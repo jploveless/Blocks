@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_cylinder</title>
+  <meta name="keywords" content="ge_cylinder">
+  <meta name="description" content="Visualization of vertical cylindrical objects on the Earth's surface">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_cylinder&#0039;)">View source code of the function ge_cylinder() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_cylinder</h1></div>
+<div class="text"><p>Visualization of vertical cylindrical objects on the Earth's surface.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_cylinder(X,Y,R,H)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_cylinder(X,Y,R,H,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_cylinder(X,Y,R,H)</td></tr></table></div>
+
+<div class="text"><p>Generates a kml character array used for visualizing a cylindrical object on the Earth's surface, the centerpoint of which is located at [X,Y]; its radius is equal to R and its height is equal to H.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_cylinder(X,Y,R,H,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, a number of options can be set regarding the appearance of the cylinder. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of the object can be included using this parameter. Its value must be passed as a character array. Including a description will cause a text balloon to pop up from the map at the object&#0039;s location. This balloon contains the character array included in &#0039;description&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'divisions'</td><td>The top of the cylinder is basically a <a href="ge_circle.html">ge_circle()</a>. Circles are plotted as adjacent triangles. The number of triangles to be used can be set using this parameter. The number of triangles is defined as (d+1)*2, in which &#0039;d&#0039; is the value of the &#0039;devisions&#0039; parameter. Default number is 8. </td></tr>
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTRRGGBB', with 'TT' representing transparency; 'RR', 'GG', and 'BB' representing red, green, and blue colors, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '80FF0000' is semi-transparent red and 'FF0000FF' is fully opaque blue.</td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Line width specification. Must be passed as a 1x1 numerical array.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>Character array with the name of the object.</td></tr>
+                    <tr><td class="code" nowrap>'polyColor'</td><td>Polygon color specification, including transparency. Color value format same as 'lineColor'.</td></tr>
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'visibility'</td><td>Defines whether the object is visible. Must be passed as numerical value 1 or 0.</td></tr>
+
+                             
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text">
+   <p>Latitudes on the Southern hemisphere and longitudes on the Western hemisphere must be passed as negative values.</p>
+   <p>Some transformation may occur due to the projection.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes are in meters.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_cylinder.m'))">demo_ge_cylinder</a> for more details.</p></div>
+<div class="text"><p>The code contained in the demo file will generate a KML file that will display as follows when viewed in Google Earth:</p><p><img src="images/ge_cylinder_example.png"></p><p>Note that the third cylinder is initially not visible in the Viewer.</p></div>
+
+<div class="spacer"></div>
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+lon	lat	eastVel	northVel	eastSig	northSig	corr	other1	tog	name
+180.000	5.000	20.000	0.000	1.000	1.000	0.000	0	1	TEST_GPS

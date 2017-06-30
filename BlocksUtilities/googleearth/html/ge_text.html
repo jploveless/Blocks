@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_text</title>
+  <meta name="keywords" content="ge_text">
+  <meta name="description" content="Adds text labels to the GoogleEarth visualization">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_text&#0039;)">View source code of the function ge_text() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_text</h1></div>
+<div class="text"><p>Adds text labels to the GoogleEarth visualization.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_text(X,Y,Z,'S')</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_plot(X,Y,Z,'S',Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_text(X,Y,Z,'S')</td></tr></table></div>
+<div class="text"><p>Places the string argument <tt>'S'</tt> at location specified by <tt>X</tt> (longitude), <tt>Y</tt> (latitude), and  <tt>Z</tt> (altitude).</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_text(X,Y,Z,'S',Parameter,Value)</td></tr></table></div>
+<div class="text"><p>Some options can be used in combination with <tt>ge_text</tt>. Assigning values to the parameters is accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of the object can be included using this parameter. Its value must be passed as a character array. Including a description will cause a text balloon to pop up from the map at the object&#0039;s location. This balloon contains the character array included in &#0039;description&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Defines whether the object is visible. Must be passed as numerical value 1 or 0.</td></tr>
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere should be passed to ge_text() as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes are in meters.</p>
+<p>A line can consist of multiple sections; these will all be assigned identical properties such as line width and color. When different lines should be assigned different line styles, use multiple calls to ge_plot() with different line style parameters. Disconnected lines with identical linestyles can be generated using coordinate vectors separated by NaNs.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_text.m'))">demo_ge_text</a> for more details.</p></div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

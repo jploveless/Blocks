@@ -1,0 +1,24 @@
+function plotsarfields(direc, save)
+
+b = load([direc filesep 'Sar.pred']);
+Segment = ReadSegmentTri([direc filesep 'Mod.segment']);
+
+titles = {'Observed', 'Modeled', 'Residual', 'Elastic', 'Block', 'Ramp', 'Shift (Block + Ramp)', 'Triangle', 'Strain'};
+
+for i = 3:11
+   figure
+   if i == 5
+      caxis([-6 4]); colormap(bluewhitered)
+   end   
+   plot3k([b(:, 1:2) zeros(size(b, 1), 1)], b(:, i), [-6 4]); view(2);
+   aa = axis;
+   hold on
+   line([Segment.lon1'; Segment.lon2'], [Segment.lat1'; Segment.lat2'], 'color', 0.5*[1 1 1]);
+   axis equal; axis(aa);
+   title(titles{i-2});
+   if exist('save', 'var')
+      fname = [direc filesep titles{i-2} '.fig'];
+      saveas(gcf, fname, 'fig')
+   end
+end
+

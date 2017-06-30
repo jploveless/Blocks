@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_screenoverlay</title>
+  <meta name="keywords" content="ge_screenoverlay">
+  <meta name="description" content="Include external images in the GoogleEarth Viewer interface.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_screenoverlay&#0039;)">View source code of the function ge_screenoverlay() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_screenoverlay</h1></div>
+<div class="text"><p>Include external images in the GoogleEarth Viewer interface.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_screenoverlay(fileName)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_screenoverlay(fileName,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_screenoverlay(fileName)</td></tr></table></div>
+<div class="text"><p>With the above syntax, a screen overlay can be included in the KML string. Screen overlays are useful for including legends, logos, and for displaying non-spatial data. If no parameter/value pairs are specified, the image file <tt>fileName</tt> is displayed at its true size in the lower left corner of the GoogleEarth Viewer.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_screenoverlay(fileName,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above syntax, a number of options can be set. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+<!--                    <tr><td class="code" nowrap>'color'</td><td>.</td></tr>-->
+<!--                    <tr><td class="code" nowrap>'description'</td><td>.</td></tr>-->
+                    <tr><td class="code" nowrap>'drawOrder'</td><td>Determines which image should be stored on top, when multiple image overlap (at a given time step). Default is 0.</td></tr>
+<!--                    <tr><td class="code" nowrap>'id'</td><td>.</td></tr>-->
+<!--                    <tr><td class="code" nowrap>'idTag'</td><td>.</td></tr>-->
+<!--                    <tr><td class="code" nowrap>'name'</td><td>.</td></tr>-->
+                    <tr><td class="code" nowrap>'posBottom'</td><td>See 'Remarks' section below. Default is 0.</td></tr>
+                    <tr><td class="code" nowrap>'posBottomUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+                    <tr><td class="code" nowrap>'posLeft'</td><td>See 'Remarks' section below. Default is 0.</td></tr>
+                    <tr><td class="code" nowrap>'posLeftUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'region'</td><td>.</td></tr>-->
+                    <tr><td class="code" nowrap>'rotation'</td><td>Rotation in degrees around the point specified by <tt>sizeLeft</tt> and <tt>sizeBottom</tt>. Default is 0.</td></tr>
+                    <tr><td class="code" nowrap>'sizeBottom'</td><td>See 'Remarks' section below. Default is 0.</td></tr>
+                    <tr><td class="code" nowrap>'sizeBottomUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+                    <tr><td class="code" nowrap>'sizeHeight'</td><td>See 'Remarks' section below. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>'sizeHeightUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+                    <tr><td class="code" nowrap>'sizeLeft'</td><td>See 'Remarks' section below. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>'sizeLeftUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+                    <tr><td class="code" nowrap>'sizeWidth'</td><td>See 'Remarks' section below. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>'sizeWidthUnits'</td><td>See 'Remarks' section below. Default is <tt>'fraction'</tt>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'snippet'</td><td>.</td></tr>-->
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>Determines the start time of a period when the image is visible.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>Determines the end time of a period when the image is visible.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Determines whether the image is initially visible.</td></tr>
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text">
+<p>
+Positioning an image on the screen is accomplished through specifying 
+<ol>
+<li>which pixel of the screen should be underneath...</li>
+<li>...which pixel of the image.</li>
+</ol>
+</p>
+<p>
+The screen pixel is defined by <tt>'posLeft'</tt> (distance from the left side of the Earth Viewer panel) and <tt>'posBottom'</tt> (distance from the bottom side of the Earth Viewer panel) parameters. These properties can be defined in units of pixels (<tt>...,'posLeftUnits','pixels',...</tt> or <tt>...,'posBottomUnits','pixels',...</tt>) or as a fraction (<tt>...,'posLeftUnits','fraction',...</tt> or <tt>...,'posBottomUnits','fraction',...</tt>). 
+</p>
+
+<p>
+Having thus defined item (1) above, we also need to define which pixel of the image should be positioned over the screen pixel we just defined. This is accomplished through the <tt>'sizeLeft'</tt> (distance from the left side of the image) and <tt>'sizeBottom'</tt> (distance from the bottom side of the image) parameters. These properties can be defined in units of pixels (<tt>...,'sizeLeftUnits','pixels',...</tt> or <tt>...,'sizeBottomUnits','pixels',...</tt>) or as a fraction (<tt>...,'sizeLeftUnits','fraction',...</tt> or <tt>...,'sizeBottomUnits','fraction',...</tt>). 
+</p>
+
+<p>
+As a final touch, we can set the size of the image using the parameters <tt>'sizeWidth'</tt> and <tt>'sizeHeight'</tt>), and their units in pixels (<tt>...,'sizeWidthUnits','pixels',...</tt> or <tt>...,'sizeHeigthUnits','pixels',...</tt>) or as a fraction (<tt>...,'sizeWidthUnits','fraction',...</tt> or <tt>...,'sizeHeigthUnits','fraction',...</tt>).
+<p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_screenoverlay.m'))">demo_ge_screenoverlay</a> for more details.</p></div>
+<div class="text">
+<p>The above will generate a *.kml file that looks like the image below when opened in the Google Earth viewer.</p>
+   <p><img src="images/ge_screenoverlay_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

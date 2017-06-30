@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_quiver</title>
+  <meta name="keywords" content="ge_quiver">
+  <meta name="description" content="Visualization of directional data (2D) in the Google Earth Viewer">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_quiver&#0039;)">View source code of the function ge_quiver() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_quiver</h1></div>
+<div class="text"><p>Visualization of directional data (2D) using arrows.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,U,V)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,U,V,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,U,V)</td></tr></table></div>
+
+<div class="text"><p>Draws arrows at locations specified by &quot;X&quot; (longitude) and &quot;Y&quot; (latitude). The direction of each arrow is determined from its components &quot;U&quot; (positive in the direction of positive longitude) and &quot;V&quot; (positive in the direction of positive latitude).</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,U,V,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon.</td></tr>
+                    <tr><td class="code" nowrap>'extrude'</td><td>See <a href="extrude.html">Extruding objects</a>.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTRRGGBB', with 'TT' representing transparency; 'RR', 'GG', and 'BB' representing red, green, and blue color intensity, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '0000FF00' is fullly transparent green and 'FF0000FF' is fully opaque red.</td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Width of the line that is used for drawing the arrows.</td></tr>
+                    <tr><td class="code" nowrap>'magnitudeScale'</td><td>Scales the length of the arrows. If D is the length of an arrow expressed as a fraction of the length of the longest arrow in the whole data set, then by default 'magnitudeScale' is set to 95% of D times the smallest distance between points in the data set. If the data comprises only 1 point, the 'magnitudeScale' parameter is set to 1.</td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Whether the object is initially visible. Must be passed to ge_quiver() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+                    
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes must be passed in meters.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_quiver.m'))">demo_ge_quiver</a> for more details.</p></div>
+<div class="text">
+<p>First, we calculate a surface according to:</p>
+<pre>
+
+res = 0.3;
+
+[X,Y] = meshgrid(-2:res:2);
+Z = X.*exp(-X.^2 - Y.^2);
+
+</pre>
+<p>That yields the surface as displayed in the image below.</p>
+<p><img src="images/ge_quiver_example_surf.png"></p>
+<p>Next, we calculate the spatial gradient at each point according to MATLAB&#0039;s gradient() function. Subsequently passing variables &quot;X&quot;, &quot;Y&quot;, &quot;U&quot;, and &quot;V&quot; to ge_quiver() and using <a href="ge_output.html">ge_output()</a> to generate a kml file...</p>
+<pre>
+
+[U,V] = gradient(Z,res,res);
+
+kmlStr = ge_quiver(X,Y,U,V,<span class="keyword">...</span>
+               <span class="string">'lineColor'</span>,<span class="string">'ffffff00'</span>,<span class="keyword">...</span>
+               <span class="string">'lineWidth'</span>,1.2,<span class="keyword">...</span>
+                <span class="string">'altitude'</span>,50000,<span class="keyword">...</span>
+             <span class="string">'msgToScreen'</span>,true);
+
+ge_output(<span class="string">'example_ge_quiver.kml'</span>,kmlStr);
+
+</pre>
+
+<p>...will yield the following when viewed in Google Earth:</p>
+   <p><img src="images/ge_quiver_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>
+
+

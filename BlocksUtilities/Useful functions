@@ -1,0 +1,86 @@
+adjustpatchpost.m: Processes an adjusted patch file.
+adjustpatchpre.m: Prepares a patch file for surface trace adjustment.
+allsegsmoothcline.m: Plots all segments colored by a given value as smoothly mitered polygons.
+alongseghist.m: Determines the number of data (earthquakes, etc.) within swaths along segments.
+autoextend.m: Attempt at auto-construction of a block geometry from a fault map.
+autoextend01.m: Attempt at auto-construction of a block geometry from a fault map.
+autoextend02.m: Attempt at auto-construction of a block geometry from a fault map.
+autoextend03.m: Attempt at auto-construction of a block geometry from a fault map.
+block2tex.m: Parses block parameters and writes them to a LaTeX table.
+BlocksPrep.m: Prepares the geometry files for a Blocks run (i.e., run Blocks through BlockLabel).
+BlockStationIdx.m: Returns the indices of all stations on a particular block.
+boundedges.m: Find boundary edges from triangular mesh.
+centroid3.m: Calculated 3-D centroid of a polygon.
+CheckerMeshLines.m: Returns coordinates defining a checkerboard mesh test.
+cleansarfield.m: Cleans a SAR velocity field.
+CommonlyCoupled.m: Calculates the most coupled elements for a range of smoothing values (see SmoothingEval.m).
+CoupledEls.m: Identifies the most coupled elements in a mesh.
+couplingcoeff.m: Calculate the coupling coefficient on a triangulated mesh.
+emptyseg.m: Make an empty segment structure.
+emptytri.m: Make an empty triangular patch structure.
+ep2vel.m: Calculates the east and north velocities at station coordinates given Euler pole coordinates.
+eqsegdist.m: Finds distance between earthquake (or any point) and closest segment.
+faultlengthwithinblocks.m: Calculates the total length of a fault map within a given block geometry.
+FindNearestEdge.m: Finds the indices of the elements along the edge of a mesh that lies closest to a given point.
+findplane.m: Returns equation of the plane through 3 points.
+geomstat.m: Outputs simple geometric statistics for a block geometry.
+getantipode.m: Calculates antipode.
+interactivesegmenttable.m: Writes segment data for interactively selected subsets of segments.
+ldepstats.m: Calculates mean residual and chi-squared for a series of directories with variable locking depths.
+LineSphInt.m: Gives coordinates of intersection between a line and sphere.
+mag.m: Calculates magnitude of array or vector.
+MakeSlipBetaPlot.m: Makes a smoothing sensitivity plot.
+MatchSegments.m: Returns the indices of segments that are identical in two different segment files.
+mcpotencyhist.m: Makes a histogram plot for Monte Carlo potency simulations.
+moddeg.m: Wraps values in degrees to a given angular range.
+modpi.m: Wraps values in radians to a given angular range.
+MonteCarloPotency.m: Tests sensitivity of potency calculation to noise perturbation (standard calculation).
+MonteCarloPotencyNoiseOnly.m: Tests sensitivity of potency calculation to noise perturbation (noise only, no residuals)
+MonteCarloPotencyNoRuns.m: Tests sensitivity of potency calculation to noise perturbation (assumed model runs have been completed).
+MonteCarloPotencyNoRunsStrain.m: Tests sensitivity of potency calculation to noise perturbation (assumes model runs have been completed and strain has been calculated).
+msh2coords.m: Eextracts coordinate and vertex information from a Gmsh .msh file.
+newdir.m: Makes a new numbered directory.
+neworigin.m: Finds new origin of globe given a new north pole location.
+obsvsmod.m: Plots geodetic and geologic observations vs. model estimates (1:1 line type plot)
+opentxt.m: Generic text file opener.
+orderblocksegs.m: Places a block's segments in order.
+OrderedEdges.m: Find the ordered edges of a triangulated mesh.
+ordersegs.m: Places a group of segments in sequential order.
+patchblock.m: Plots blocks as colored patches.
+pbisectfull.m: Gives coordinates of intersection between 2 line segments.
+pbpointline.m: Finds the shortest distance between a point and a line segment.
+placepatchedge.m: Places a specified patch surface trace into a segment file.
+PlotBlocks.m: Plots a block geometry from ordered coordinates.
+plotsarfields.m: Plots SAR velocity fields from a block model run.
+PotencyRatio.m: Potency ratio calculation
+PotencyRatioDelaunay.m: Potency ratio calculation
+PotencyRatioDelaunaySeismic.m: Potency ratio calculation
+PotencyRatioFaultSeismic.m: Potency ratio calculation
+potencyvolumescaling.m: Makes a 2-panel plot showing potency-volume scaling.
+ReadBlockCoords.m: Reads a Block.coords file.
+readcfmr.m: Read CFM-R geometry file.
+remove_ramp.m: InSAR ramp removal.
+seg2table.m: Writes segment structure information a LaTeX table.
+seg2tex.m: Writes TeX code containing segment data.
+SegmentParamsGeo.m: Calculate some segment parameters for use with Okada codes.
+segsurfproj.m: Calculates coordinates of segment surface projection.
+SelElStats.m: Gives statistics of slip for selected elements.
+selfstress.m: Calculates self, total, and "other" stress for a subset of segments.
+selsta.m: Interactive station selection in Result Manager or Segment Manager.
+SineSlip.m: Generates a 2-d sinusoidal slip distribution.
+SlipRecovery.m: Runs multiple inversions to test the recovery of the triangular slip.
+smoothblockcline.m: Plots a smooth colored "line" as a series of polygons for a block
+smoothcline.m: Plots a smooth colored "line" as a series of polygons (i.e., no gaps at segment boundaries)
+smoothclineallblocks.m: Plots all segments using smooth colored polygons (representing slip rates).
+SmoothingEval.m: Generates a series of block models to evaluate the effects of the triangular smoothing parameter on mean fault slip magnitude and residuals.
+stationdist.m: Calculates the distance between stations and, optionally, elements.
+structmath.m: Carries out simple operations on structures.
+svdtrunccrawler.m: Crawls results directories to extract data.
+swathblockseg.m: Produces a polygon bounding a block's segments.
+swathels.m: Finds the most influential swath of triangular elements based on magnitude of partials.
+swathseg_half_offset.m: Produces a polygon bounding a series of segments (one side only, offset from segment trace).
+swathseg_half.m: Produces a polygon bounding a series of segments (one side only).
+swathseg.m: Produces a polygon bounding a series of segments (symmetric about segment traces).
+triaz.m: Determines the surface azimuth of triangular slip vectors.
+TriBlockSlips.m: Resolves relative block motion onto the triangular mesh.
+triinv.m: Inverts surface displacements for slip on triangular mesh.

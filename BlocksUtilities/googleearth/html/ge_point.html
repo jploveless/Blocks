@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_point</title>
+  <meta name="keywords" content="ge_point">
+  <meta name="description" content="Visualizing points in 3D space.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_point&#0039;)">View source code of the function ge_point() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_point</h1></div>
+<div class="text"><p>Visualizing points in 3D space.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_point(X,Y,Z)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_point(X,Y,Z,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_point(X,Y,Z)</td></tr></table></div>
+
+<div class="text"><p>Visualizing points in 3D space. Coordinates must be passed to ge_point() as identically sized numerical arrays &quot;X&quot; (longitude), &quot;Y&quot; (latitude), and &quot;Z&quot; (elevation).</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_point(X,Y,Z,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;dataFormatStr&#0039;</td><td>This parameter specifies how the numbers in the pop-up balloon will be displayed. Default is &#0039;%g&#0039;. See <a href="matlab:doc(&#0039;matlab/sprintf&#0039;)">doc sprintf</a> for information about formatting numbers. Value of the parameter is only relevant when numel(X)==1, see under 'description'.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon. When only one point is passed to ge_point(), the default value is a table containing the coordinates; when multiple points are passed at ge_plot(), the default value of parameter &#0039;description&#0039; is a null string (description='';).</td></tr>
+                    <tr><td class="code" nowrap>'extrude'</td><td>See <a href="extrude.html">Extruding objects</a>.</td></tr>
+                    <tr><td class="code" nowrap>'iconColor'</td><td>Backgroundcolor of the icon.</td></tr>
+                    <tr><td class="code" nowrap>'iconScale'</td><td>Scaling parameter of the icon.</td></tr>
+                    <tr><td class="code" nowrap>'iconURL'</td><td>Link to image file to use as icon. On Windows, the icons are usually stored locally at <a href="matlab: openInBrowser(&#0039;file:///C:/Program%20Files/Google/Google%20Earth/res&#0039;)">&quot;C:\Program Files\Google\Google Earth\res\&quot;</a> (folders &quot;paddle&quot;, &quot;pal2&quot;, &quot;pal3&quot;, &quot;pal4&quot; and &quot;pal5&quot;). By using &#0039;iconURL&#0039;, you can point to these local files, but for improved portability, use their online equivalents; to do so, replace &quot;C:\Program Files\Google\Google Earth\res\&quot; in the value assigned to &#0039;iconURL&#0039; with &quot;http://maps.google.com/mapfiles/kml/&quot;.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>&#0039;pointDataCell&#0039;</td><td>By default, the popup balloon contains the values of &quot;X&quot; (longitude), &quot;Y&quot; (latitude), and &quot;Z&quot; (elevation);  Other data about the point can be instead put into the table with &quot;pointDataCell&quot; parameter. Its value should be a Nx2 cell array of strings.</td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;tableBorderWidth&#0039;</td><td>This parameter specifies the borderwidth of the table in the pop-up balloon. Default is 1. Can only be used when numel(X)==1. Default is 1.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Whether the object is initially visible. Must be passed to ge_box() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+   
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes must be passed in meters.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_point.m'))">demo_ge_point</a> for more details.</p></div>
+<div class="text">
+<p>The source code below draws a series of points along a vertical spiral. The script demonstrates how to use multiple points, as well as how to use single points with one of the following in the pop-up balloon: latitude, longitude altitude information; some user-supplied HTML web content; an array of strings with additional data.</p>
+   <p><img src="images/ge_point_table_example2.png"></p>
+</div>
+
+
+<div class="spacer"></div>
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

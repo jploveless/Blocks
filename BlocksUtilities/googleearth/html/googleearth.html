@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - googleearth</title>
+  <meta name="keywords" content="googleearth">
+  <meta name="description" content="GoogleEarth Toolbox Root function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;googleearth&#0039;)">View source code of the function googleearth() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">googleearth</h1></div>
+<div class="text"><p>With this function, you can automatically add the right subdirectories to the path, update the documentation style sheet with your text colors, and set the location of your system browser.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>googleearth -docinstall</td></tr>
+             <tr><td class="code" nowrap>googleearth -setbrowser</td></tr>
+             <tr><td class="code" nowrap>googleearth -version</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>googleearth -docinstall</td></tr></table></div>
+<div class="text"><p>After adding the toolbox location to the path, you should run this command. It adds a few subdirectories to the path, and updates the colors of the CSS style sheet such that the GoogleEarth Toolbox documentation uses your text color preferences for strings, keywords, etc. (If you don't use this command, you should still be able to use the documentation). Note that this command is necessary to get the right version number when issuing a <tt>googleearth -version</tt> command.  </p></div>
+<div class="text"><table><tr><td class="code" nowrap>googleearth -setbrowser</td></tr></table></div>
+<div class="text"><p>This option has been added to overcome a problem with using the system browser from the MATLAB documentation (for instance when opening external web pages). Running the command with this option lets you specify the call to launch a browser on your system. This call is then used by the GoogleEarth Toolbox documentation whenever an external web page is requested.</p>
+<p>Examples:</p>
+<pre>
+"C:\\Program Files\\Internet Explorer\\iexplore.exe" %s
+"C:\\Program Files\\Mozilla Firefox\\firefox.exe" %s
+</pre>
+<p>
+Note the double quotes around the location of your browser executable, and the double backslashes. The %s will be substituted by the webaddress.
+</p>
+</div>
+<div class="text"><table><tr><td class="code" nowrap>googleearth -version</td></tr></table></div>
+<div class="text"><p>This option returns the version number of the toolbox.</p></div>
+
+
+
+
+
+<div class="spacer"></div>
+<div class="footer">
+<hr>
+
+<a name="_bottom"></a></div>
+</body>
+</html>

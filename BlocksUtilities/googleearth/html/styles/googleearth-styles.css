@@ -1,0 +1,35 @@
+body
+  { background-color: #4c862c;
+    background-image: url(../images/university_of_amsterdam.png);
+    background-repeat: repeat-y;
+    background-position: top,left;
+    padding:50px;
+    font-family: verdana, sans-serif;
+    font-size: 100%;
+    line-height:1.75em;
+    width:600px;
+  }
+
+
+div 
+  { 
+    border-left:1px solid #00FFFF;
+    border-right:1px solid #00FFFF;
+    width:600px;
+  }
+
+
+
+div.pageheader 
+  { background-color: #000000;
+    background-image: url(../images/toolbox-header01.png);
+    background-repeat: no-repeat;
+    background-position: top,left;
+    border-top:1px solid #000000;
+    height:150px;
+    margin-top:40px;
+  }
+
+div.pageheaderlinks 
+  { background-color: #008000;
+  }

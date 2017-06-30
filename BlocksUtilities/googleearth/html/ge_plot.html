@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_plot</title>
+  <meta name="keywords" content="ge_plot">
+  <meta name="description" content="Visualization of lines parallel to the Earth's surface">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_plot&#0039;)">View source code of the function ge_plot() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_plot</h1></div>
+<div class="text"><p>Visualization of lines parallel to the Earth's surface.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_plot(X,Y)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_plot(X,Y,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_plot(X,Y)</td></tr></table></div>
+<div class="text"><p>When the above syntax is used, ge_plot() will return the character array &quot;kmlStr&quot; containing XML-based kml tags. This character array contains the coordinates specified in X and Y that were passed to ge_plot(). If the resultant character array is used as part of a *.kml file (see function <a href="ge_output.html">ge_output()</a>), it can be opened in the Google Earth Viewer, where it will be displayed as a line connecting the points from the input arrays X and Y (respectively representing Longitude and Latitude in units of decimal degrees). By default the line is drawn as a 100% opaque, white line of width 1, but the appearance of the line can be set by including parameter/value pairs (see below).  </p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_plot(X,Y,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>A number of options can be set regarding the appearance of the line. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of the object can be included using this parameter. Its value must be passed as a character array. Including a description will cause a text balloon to pop up from the map at the object&#0039;s location. This balloon contains the character array included in &#0039;description&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'extrude'</td><td>See <a href="extrude.html">Extruding objects</a>.</td></tr>
+                    <tr><td class="code" nowrap>'forceAsLine'</td><td>When lines do not end at the location where they started, they are sometimes automatically connected by the OpenGL renderer when displayed in the Google Earth Viewer. By setting this parameter to true, this is avoided by plotting lines from start to end and back. This will force all lines to end at their starting point. Note that this will increase file size. Default is true.</td></tr>
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTRRGGBB', with 'TT' representing transparency; 'RR', 'GG', and 'BB' representing red, green, and blue colors, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '80FF0000' is semi-transparent red and 'FF0000FF' is fully opaque blue.</td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Line width specification. Must be passed as a 1x1 numerical array.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>Character array with the name of the object.</td></tr>
+                    <tr><td class="code" nowrap>'tessellate'</td><td>See <a href="tessellate.html">Tessellation</a>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Defines whether the object is visible. Must be passed as numerical value 1 or 0.</td></tr>
+
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere should be passed to ge_plot() as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes are in meters.</p>
+<p>A line can consist of multiple sections; these will all be assigned identical properties such as line width and color. When different lines should be assigned different line styles, use multiple calls to ge_plot() with different line style parameters. Disconnected lines with identical linestyles can be generated using coordinate vectors separated by NaNs.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_plot.m'))">demo_ge_plot</a> for more details.</p></div>
+<div class="text">
+<p>The above will generate a *.kml file that looks like the image below when opened in the Google Earth viewer.</p>
+   <p><img src="images/ge_plot_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

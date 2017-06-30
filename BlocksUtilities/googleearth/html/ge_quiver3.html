@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_quiver3</title>
+  <meta name="keywords" content="ge_quiver3">
+  <meta name="description" content="Visualization of directional data (3D) in the Google Earth Viewer">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_quiver3&#0039;)">View source code of the function ge_quiver3() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_quiver3</h1></div>
+<div class="text"><p>Visualization of directional data (3D) using arrows.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_quiver3(X,Y,Z,U,V,W)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_quiver3(X,Y,Z,U,V,W,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,Z,U,V,W)</td></tr></table></div>
+
+<div class="text"><p>Places 3D <a href="collada_models.html">Collada model</a> arrows at locations specified by &quot;X&quot; (longitude), &quot;Y&quot; (latitude), and &quot;Z&quot; (elevation). The direction of each arrow is determined from its components &quot;U&quot; (positive in the direction of positive longitude), &quot;V&quot; (positive in the direction of positive latitude), and &quot;W&quot; (positive in the direction of positive elevation).</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_quiver(X,Y,Z,U,V,W,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'arrowScale'</td><td>Scales the arrow, but allows for varying of the arrow length with fluctuations in vector components &quot;U&quot;, &quot;V&quot;, and &quot;W&quot;. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon.</td></tr>
+                    <tr><td class="code" nowrap>'fixedArrowLength'</td><td>Makes the arrow length independent from the vector components &quot;U&quot;, &quot;V&quot;, and &quot;W&quot;. Used in function <a href="ge_windbarb.html">ge_windbarb()</a>. Default is false.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;modelLinkStr&#0039;</td><td>URL specifying which Collada model to use as arrow. See also <a href="collada_models.html">collada models</a>.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes must be passed in units of meters.</p>
+                  <p>Input variables &quot;X&quot;, &quot;Y&quot;, and &quot;Z&quot; define the origin of the arrows.</p>
+ </div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the <a href="matlab:edit(url_from_folder('demo','demo_ge_quiver3_2.m'))">demo file</a> for more details.</p>
+<p>The demo script cycles through a double for-loop. During the first loop, when m is equal to 1, variable &quot;a&quot; is used to calculate the heading of the Collada model ('redcone.dae'). During the second loop, when m is equal to 2, variable &quot;a&quot; is used to calculate the model's tilt.</p>
+<p>If the collada model file and the kml file are located in the same directory, the above should yield the following when viewed in Google Earth:</p>
+   <p><img src="images/ge_quiver3_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

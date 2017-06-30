@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_folder</title>
+  <meta name="keywords" content="ge_folder">
+  <meta name="description" content="Organize kml outputs into folders">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_folder&#0039;)">View source code of the function ge_folder() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_folder</h1></div>
+<div class="text"><p>Organize kml outputs into folders.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr2 = ge_folder(kmlStr1)</td></tr>
+             </table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr2 = ge_folder(kmlStr1)</td></tr></table></div>
+
+<div class="text"><p>Organize kml outputs into multiple level folders. Function ge_folder() constructs output variable &quot;kmlStr2&quot by adding a kml header and footer to the input variable &quot;kmlStr1&quot;, indicating the folder level.  </p></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text">
+   <p>Organizing kml files into multiple levels can be achieved by recursively using ge_folder(). See example below.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>The code contained in <a href="matlab:edit(url_from_folder('demo','demo_ge_folder.m'))">this m-file</a> will display as follows when viewed in Google Earth:</p><p><img src="images/ge_folder_example.png"></p></div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>
