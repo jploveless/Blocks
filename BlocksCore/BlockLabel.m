@@ -159,26 +159,27 @@ function [S, b, st] = BlockLabel(s, b, st)
     stl = zeros(numel(st.lon), 1);
     dLon = 1e-6;
 
-    %[bix, biy, biz] = sph2cart(DegToRad(b.interiorLon), DegToRad(b.interiorLat), 6371);
+    % Convert interior points to Cartesian
+    [bix, biy, biz] = sph2cart(DegToRad(b.interiorLon), DegToRad(b.interiorLat), 6371);
 
     for i = 1:nblock
         % Take block coordinates from the traversal order matrix
         sib = seg_poly_ver(i, (seg_poly_ver(i, :) ~= 0)); % segments in block
         ooc = seg_trav_ord(i, (seg_trav_ord(i, :) ~= 0)); % order in which the segments are traversed
         cind = (ooc-1)*nseg + sib; % convert index pairs to linear index
-        %    bcx = segx(cind)';
-        %    bcy = segy(cind)';
-        %    bcz = segz(cind)';
         bco = sego(cind)';
         bca = sega(cind)';
         % Test which interior points lie within the current block
-        bin = inpolygonsphere(b.interiorLon, b.interiorLat, bco, bca);
+        [bin, saz] = inpolygonsphere(b.interiorLon, b.interiorLat, bco, bca);
+        if sum(bin) > 1
+           [bin, saz] = inpolygonsphere(b.interiorLon, b.interiorLat, bco, bca, saz-180);
+        end
         barea(i) = polyareasphere(bco, bca);
         % Now test the segments for labeling east and west sides
         testlon = S.midLon(sib) + dLon; % perturbed midpoint longitude
-        cin = inpolygonsphere(testlon, S.midLat(sib), bco, bca); % test to see which perturbed coordinates lie within the current block
+        cin = inpolygonsphere(testlon, S.midLat(sib), bco, bca, saz); % test to see which perturbed coordinates lie within the current block
         % Now test the station coordinates for block identification
-        stin = inpolygonsphere(st.lon, st.lat, bco, bca);
+        stin = inpolygonsphere(st.lon, st.lat, bco, bca, saz);
         if sum(bin) > 1 % exterior block or error
             if abs(barea(i)) == max(abs(barea)) && ext == 0 % if the area is the largest and exterior hasn't yet been assigned
                 alabel(find(~bin)) = i; % ...assign this block as the exterior
@@ -199,9 +200,15 @@ function [S, b, st] = BlockLabel(s, b, st)
         b.orderLat{i} = [bca(:); bca(1)];
     end
 
-    if ext == 0 & length(b.interiorLon) <= 2 % Special case for a single block
-        ext = 2;
-        alabel = [1 2];
+    if ext == 0 % If exterior block is unassigned, 
+       if length(b.interiorLon) <= 2 % Special case for a single block
+          ext = 2;
+          alabel = [1 2];
+          b.orderLon{2} = b.orderLon{1};
+          b.orderLat{2} = b.orderLat{1};
+       else
+          ext = setdiff(1:nblock, alabel); % Special case for a north pole block
+       end 
     end
 
     % treat exterior block segment labels - set exterior block for yet undefined segment labels
@@ -215,6 +222,7 @@ function [S, b, st] = BlockLabel(s, b, st)
     S.westLabel = wl;
 
     [st.blockLabel, st.blockLabelUnused] = deal(stl);
+    keyboard
     % Reorder block properties
     alabel(alabel == 0) = ext;
     b = BlockReorder(alabel, b);

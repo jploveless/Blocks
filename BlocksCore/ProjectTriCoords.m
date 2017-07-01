@@ -94,6 +94,7 @@ intlat                        = [rad_to_deg(ilat'); lat(2, :)];
 %%  Do conversion to projected space  (Oblique Mercator)  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [mx, my]                      = faultobliquemerc([s.lon(:); p.lon1; p.lon2; p.lon3], [s.lat(:); p.lat1; p.lat2; p.lat3], intlon(idx(1, :)), intlat(idx(1, :)), intlon(idx(2, :)), intlat(idx(2, :)));
+
 % Calculate exact strike used for projection, for unprojection later
 p.Strike                      = sphereazimuth(intlon(idx(1, :)), intlat(idx(1, :)), intlon(idx(2, :)), intlat(idx(2, :)));
 

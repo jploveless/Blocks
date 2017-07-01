@@ -7,7 +7,7 @@ Meade, B.J. and J.P. Loveless (2009), Block modeling with multiple fault network
 
 Blocks is designed for use with Matlab R2014b and later. 
 
-Documentation (evolving) can be found on the [**Blocks** wiki](https://github.com/brendanjmeade/Blocks/wiki) and in a [Google Doc] (https://docs.google.com/document/d/1AJheJrVqPX4yj2hbgysC-H2RkdkfkxvNJQIza1b3u34/edit?usp=sharing).
+Documentation (evolving) can be found on the [**Blocks** wiki](https://github.com/brendanjmeade/Blocks/wiki) and in a [Google Doc](https://docs.google.com/document/d/1AJheJrVqPX4yj2hbgysC-H2RkdkfkxvNJQIza1b3u34/edit?usp=sharing).
 
 To get started: 
 ---------------
@@ -17,7 +17,9 @@ Run the following commands on the Matlab command prompt:
 blockshome = '~/MATLAB/Blocks'; % Edit path to where you placed the Blocks directory
 cd(blockshome) 
 cd BlocksUtilities
-blockspath(blockshome) % This function adds the Blocks subdirectories to your Matlab path
+% The next function adds the Blocks subdirectories to your Matlab path. 
+% Make sure you have permission to write to pathdef.m.
+blockspath(blockshome) 
 ```
 
 You can create a new template model directory structure using:

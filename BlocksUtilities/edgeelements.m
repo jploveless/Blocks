@@ -81,7 +81,7 @@ for j = 1:length(dcorn)
          nodes.bot = [nodes.bot, elo(eidx)];
       else % Else it's the top edge
          els.top = logical(sum([els.top, eedge], 2));
-         nodes.top = [nodes.bot, elo(eidx)];
+         nodes.top = [nodes.top, elo(eidx)];
       end
    end
 end

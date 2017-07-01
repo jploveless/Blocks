@@ -19,3 +19,4 @@ else
    plon = lon + atan2d(a, b);
 end
 plon(b == 0) = lon(b == 0);
+plon(b == 0 & plat == 0) = lon(b == 0 & plat == 0) + 90;

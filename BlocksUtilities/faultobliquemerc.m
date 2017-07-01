@@ -1,4 +1,4 @@
-function [x, y] = faultobliquemerc(lambda, phi, lambda1, phi1, lambda2, phi2)
+function [x, y, lambda0] = faultobliquemerc(lambda, phi, lambda1, phi1, lambda2, phi2)
 % obliquemerc   Oblique mercator projection.
 %   [X, Y] = OBLIQUEMERC(LON, LAT, LON1, LAT1, LON2, LAT2) carries out 
 %   oblique Mercator projection of the data contained in arrays LON and 
@@ -48,6 +48,9 @@ elseif sproj(2) > 1 && sdata(2) == 1
    phi2          = repmat(phi2, sdata(1), 1);
 end
 
+% Calculate fault midpoints
+[lambdam, phim] = segmentmidpoint(lambda1, phi1, lambda2, phi2);
+
 % Trig. functions
 cphi = cosd(phi);
 sphi = sind(phi);
@@ -71,6 +74,7 @@ sp = sign(phip);
 % Choose northern hemisphere pole
 lambdap(phip < 0) = lambdap(phip < 0) + 180;
 phip(phip < 0) = -phip(phip < 0);
+
 % Find origin longitude
 lambda0 = lambdap + 90; % Origin longitude is pole + 90 degrees
 lambda0(lambda0 > 180) = lambda0(lambda0 > 180) - 360; % Wrap to 180
@@ -82,8 +86,9 @@ A = sphip.*sphi - cphip.*cphi.*sind(dlamb);
 
 % Projection
 x = atan((tand(phi).*cphip + sphip.*sind(dlamb))./cosd(dlamb));
-x = x - (cosd(dlamb) > 0)*pi + pi/2; % This is different from the reference but agrees with Mapping Toolbox
+x(phip < 80) = x(phip < 80) - (cosd(dlamb(phip < 80)) > 0)*pi + pi/2; % This is different from the reference but agrees with Mapping Toolbox
+x(phip >= 80) = x(phip >= 80) - (cosd(dlamb(phip >= 80)) < 0)*pi + pi/2; % This prevents low-latitude, E-W elements from spanning the globe rather than being near origin of projected coordinates
 y = atanh(A);
+
 x = -sp.*x;
 y = -sp.*y;
-
