@@ -155,6 +155,13 @@ switch Command.solutionMethod
     %     Model.covariance = V * inv(S) * U'; % Not yet truncated....
     %     Model.omegaEst = Model.covariance*R'*W*d;
     %     fprintf(1, 'Done.\n');
+    
+%    case 'tvr'
+%        fprintf(1, '%s\n', Command.solutionMethod);
+%        fprintf(1, 'Doing the inversion with Total Variation Regularization...\n');
+%        Model.covariance = blockstritvr(R, W, d, Patches);
+%        Model.omegaEst = Model.covariance*R'*W*d;
+%        fprintf(1, 'Done.\n');
 
     otherwise
         fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);

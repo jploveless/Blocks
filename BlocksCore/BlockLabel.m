@@ -222,7 +222,7 @@ function [S, b, st] = BlockLabel(s, b, st)
     S.westLabel = wl;
 
     [st.blockLabel, st.blockLabelUnused] = deal(stl);
-    keyboard
+
     % Reorder block properties
     alabel(alabel == 0) = ext;
     b = BlockReorder(alabel, b);
