@@ -100,3 +100,7 @@ w(rows{5, 1})                                    = Sigma.smooth(Index.triSmoothk
 d(rows{6, 1})                                    = Data.triSlipCon(Index.triConkeep);
 w(rows{6, 1})                                    = Sigma.triSlipCon(Index.triConkeep);
 W                                                = diag(w); % convert weights into a diagonal matrix
+
+% Place row and column indices into Index structure
+Index.rows = rows;
+Index.cols = cols;
