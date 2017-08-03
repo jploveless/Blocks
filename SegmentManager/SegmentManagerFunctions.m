@@ -46,7 +46,7 @@ function SegmentManagerFunctions(option, displayTimingInfo)
 
             % Process .block file
             ha = Seg.loadEditBlock;
-            set(ha, 'string', 'Command.blockFileName');
+            set(ha, 'string', Command.blockFileName);
             Block = ReadBlocksStruct(Command.blockFileName);
             Block = AlphaSortBlock(Block);
             setappdata(gcf, 'Block', Block);

@@ -159,9 +159,9 @@ switch Command.solutionMethod
    case 'tvr'
        fprintf(1, '%s\n', Command.solutionMethod);
        fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...\n', Command.tvrlambda);
-       [Rt, dt, Wt, Difft] = AdjustMatricesTvr(R, d, W, Patches, Index);
+       [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
        Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command.tvrlambda);
-       Model.covariance = inv(Rt'*Wt*Rt);
+       Model.covariance = inv(R'*W*R);
        fprintf(1, 'Done.\n');
 
     otherwise
@@ -221,7 +221,6 @@ Model.upResidVel                                 = Station.upVel - Model.upVel;
 Model.SarResid                                   = Sar.data - Model.Sar;
            
 fprintf('done.\n')
-
 fprintf('Writing output...')
 % Write output
 runName = WriteOutput(Segment, Patches, Station, Sar, Block, Command, Model, Mogi);
