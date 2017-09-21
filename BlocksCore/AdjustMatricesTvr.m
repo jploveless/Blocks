@@ -24,9 +24,9 @@ Wg = W(keep, :);
 Wg = Wg(:, keep);
 
 % Make difference operator
-difft = MakeDiffMatrix_mesh3d(Patches);
+difft = MakeDiffMatrix_mesh2d(Patches);
 % Adjust size
-difft = difft(Index.triSmoothkeep, Index.triColkeep);
+%difft = difft(Index.triSmoothkeep, Index.triColkeep);
 % Place into larger penalty array augmented with zeros
 Difft = zeros(size(difft, 1), size(R, 2));
 Difft(:, Index.cols{5, 2}) = difft; % Essentially replacing smoothing matrix from classic

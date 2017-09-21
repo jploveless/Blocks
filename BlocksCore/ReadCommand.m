@@ -232,7 +232,7 @@ while 1
       case('ridge param')
         Command.ridgeParam                            = str2double(value);
         
-      case('Lambda value for TVR estimator')
+      case('lambda value for tvr estimator')
         Command.tvrlambda                             = str2double(value);
 
 
