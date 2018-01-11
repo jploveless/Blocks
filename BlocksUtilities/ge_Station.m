@@ -8,6 +8,11 @@ function ge_Station(Station, file)
 %   http://www.mathworks.com/matlabcentral/fileexchange/12954-google-earth-toolbox
 %
 
+% If a station filename was passed, read it in
+if ~isstruct(Station)
+   Station = ReadStation(Station);
+end
+  
 kml = [];
 for i = 1:length(Station.lon)
    kml = strvcat(kml, ge_point(Station.lon(i), Station.lat(i), 1)); 
