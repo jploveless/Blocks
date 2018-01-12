@@ -1,9 +1,15 @@
 function ge_Velcolor(s, filename, cmap, varargin)
-% ge_Vecsuite  Writes a .kml file for a station structure.
-%   ge_Vecsuite(S, OUT, DAE) writes .kml files for each of the 
-%   .sta files within the results directory IN to files in directory
-%   OUT. It is necessary to specify where the Collada source files
-%   are located, in directory DAE. 
+% ge_Velcolor  Writes a .kml file with colored, scaled vectors
+%   ge_Velcolor(S, OUT, CMAP) writes .kml file with colored, scaled 
+%   vectors based on the station structure S to file OUT. CMAP can 
+%   be the name of any valid colormap, or an n-by-3 colormap array.
+%
+%   ge_Velcolor(S, OUT, CMAP, CAX) uses the 2-element vector CAX
+%   to specify the limits on the color scale. By default, the full range of 
+%   velocities is used. 
+%
+%   ge_Velcolor(S, OUT, CMAP, SCALE) modifies the SCALE of the vectors. The
+%   default value is 100. 
 %
 %   Uses the Matlab "googleearth" toolbox:
 %   http://www.mathworks.com/matlabcentral/fileexchange/12954-google-earth-toolbox
@@ -51,9 +57,18 @@ speed(speed > cax(2)) = cax(2);
 ispeed = ceil((nd-1)*((speed - cax(1))./(diff(cax)))+1);
 
 % Make kml
-kml = [];
+fid = fopen(filename, 'wt');
+name = filename;
+header = ['<?xml version="1.0" encoding="UTF-8"?>',10,...
+         '<kml xmlns="http://earth.google.com/kml/2.1">',10,...
+         '<Document>',10,...
+         '<name>',10,name,10,'</name>',10];
+
+fprintf(fid,'%s',header);
+
 for i = 1:length(s.lon)
-   kml = strvcat(kml, ge_quiver3(wrapTo180(s.lon(i)), s.lat(i), 100, sca*s.eastVel(i), sca*s.northVel(i), sca*s.upVel(i), 'modelLinkStr', sprintf('colvelarrows%sarrow%g.dae', filesep, ispeed(i)), 'altitudeMode', 'relativeToGround', 'name', sprintf('%s: (%g, %g)', s.name(i, :), s.eastVel(i), s.northVel(i))));
+   kml = ge_quiver3(wrapTo180(s.lon(i)), s.lat(i), 100, sca*s.eastVel(i), sca*s.northVel(i), sca*s.upVel(i), 'modelLinkStr', sprintf('colvelarrows%sarrow%g.dae', filesep, ispeed(i)), 'altitudeMode', 'relativeToGround', 'name', sprintf('%s: (%g, %g)', s.name(i, :), s.eastVel(i), s.northVel(i)));
+   fprintf(fid, '%s', kml);
 end
 
 % Make a PNG colorbar, write the file, and write the reference to in the KML
@@ -73,6 +88,9 @@ close
 
 % Add overlay information to kml
 out = ge_screenoverlay([f '.png'], 'sizeLeft', 0.015, 'sizeBottom', 0.1, 'posLeft', 0.015, 'posBottom', 0.1);
-kml = strvcat(kml, out);
+fprintf(fid, '%s', out);
 
-ge_output(filename, kml');
+% KML footer
+footer = [10,'</Document>',10,'</kml>'];
+fprintf(fid, '%s', footer);
+fclose(fid);
