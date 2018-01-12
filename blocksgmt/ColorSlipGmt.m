@@ -31,7 +31,7 @@ if comp == 1
    s.ssRate(s.ssRate < min(clims)) = min(clims);
    cmap = redwhiteblue(256, clims);
    cidx = ceil(255*(s.ssRate + max(clims))./diff(clims) + 1);
-   pnc2cpt(cmap, clims, [path filesep name '.cpt'])
+%   pnc2cpt(cmap, clims, [path filesep name '.cpt'])
    cvec = 255*cmap(cidx,:);
    for i = 1:numel(s.lon1)
       fprintf(fid, '> -W5p/%d/%d/%d\n%d %d\n%d %d\n', round(cvec(i, 1)), round(cvec(i, 2)), round(cvec(i, 3)), s.lon1(i), s.lat1(i), s.lon2(i), s.lat2(i));
@@ -48,7 +48,7 @@ else
    nslips(nslips < min(clims)) = min(clims);
    cmap = bluewhitered(256, clims);
    cidx = ceil(255*(nslips + max(clims))./diffRate + 1);
-   pnc2cpt(cmap, clims, [path filesep name '.cpt'])
+%   pnc2cpt(cmap, clims, [path filesep name '.cpt'])
    cvec = 255*cmap(cidx,:);
    for i = 1:numel(s.lon1)
       fprintf(fid, '> -W5p/%d/%d/%d\n%d %d\n%d %d\n', round(cvec(i, 1)), round(cvec(i, 2)), round(cvec(i, 3)), s.lon1(i), s.lat1(i), s.lon2(i), s.lat2(i));
