@@ -6,6 +6,11 @@ if isempty(e)
    filename = [filename '.png'];
    e = '.png';
 end
+% Check path 
+if isempty(p)
+   filename = ['.' filesep filename];
+   p = '.';
+end
 
 % Parse optional arguments
 if nargin > 3

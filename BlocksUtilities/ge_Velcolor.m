@@ -26,6 +26,11 @@ if isempty(e)
    e = '.kml';
 end
 
+if isempty(p)
+   filename = ['.' filesep filename];
+   p = '.';
+end
+
 % Check for optional arguments
 if nargin > 3
    for i = 1:length(varargin)

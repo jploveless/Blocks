@@ -18,6 +18,11 @@ if isempty(e)
    file = [file '.kml'];
    e = '.kml';
 end
+% Check path 
+if isempty(p)
+   file = ['.' filesep file];
+   p = '.';
+end
 
 % Colorbar construction
 if comp == 1  % Strike-slip

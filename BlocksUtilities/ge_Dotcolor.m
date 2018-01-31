@@ -24,6 +24,11 @@ if isempty(e)
    filename = [filename '.kml'];
    e = '.kml';
 end
+% Check path 
+if isempty(p)
+   filename = ['.' filesep filename];
+   p = '.';
+end
 
 % Check for optional arguments
 if nargin > 4
