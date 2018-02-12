@@ -1033,7 +1033,7 @@ function SegmentManagerFunctions(option, displayTimingInfo)
             elseif value == 1
                 % Plot surface projection of dipping structures
                 if isempty(Segment),  return;  end
-                PlotDips(Segment.lon1, Segment.lat1, Segment.lon2, Segment.lat2, Segment.dip, Segment.lDep, Segment.bDep)
+                PlotDips(Segment.lon1, Segment.lat1, Segment.lon2, Segment.lat2, Segment.dip, Segment.lDep, Segment.bDep);
             else
                 return;
             end

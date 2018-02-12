@@ -36,7 +36,7 @@ for i = 1:numel(fault_lon1)
    x_vec(i, :) = [fault_lon1(i), fflon1, fflon2, fault_lon2(i)];
    y_vec(i, :) = [fault_lat1(i), fflat1, fflat2, fault_lat2(i)];
    if (fault_dip(i) ~= 90)
-      poly_hndl = patch(x_vec, y_vec, 1.00 * [1 0 0 ], 'Clipping', ...
+      poly_hndl = patch(x_vec(i, :), y_vec(i, :), 1.00 * [1 0 0 ], 'Clipping', ...
                         'on', 'EdgeColor', 'k', 'tag', 'Dips', 'LineStyle', '-');
    end
 end
