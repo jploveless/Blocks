@@ -7,7 +7,7 @@ Meade, B.J. and J.P. Loveless (2009), Block modeling with multiple fault network
 
 Blocks is designed for use with Matlab R2014b and later. 
 
-Documentation (evolving) can be found on the [**Blocks** wiki](https://github.com/brendanjmeade/Blocks/wiki) and in a [Google Doc](https://docs.google.com/document/d/1AJheJrVqPX4yj2hbgysC-H2RkdkfkxvNJQIza1b3u34/edit?usp=sharing).
+Documentation (evolving) can be found on the [**Blocks** wiki](https://github.com/jploveless/Blocks/wiki) and in a [Google Doc](https://docs.google.com/document/d/1AJheJrVqPX4yj2hbgysC-H2RkdkfkxvNJQIza1b3u34/edit?usp=sharing).
 
 To get started: 
 ---------------
