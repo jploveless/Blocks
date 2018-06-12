@@ -83,9 +83,9 @@ strainvec = stack3([strain.eLonLon(nzstrain), strain.eLonLat(nzstrain), strain.e
 v.Rot = Partials.rotation*omega;
 v.Def = Partials.elastic*Partials.slip*omega;
 v.Tri = Partials.tri*ts;
-%v.Str = Partials.strain*strainvec;
-%v.Mod = v.Rot - v.Def - v.Tri + v.Str; % Total modeled velocities
-v.Mod = v.Rot - v.Def - v.Tri; % Total modeled velocities
+v.Str = Partials.strain*strainvec;
+v.Mod = v.Rot - v.Def - v.Tri + v.Str; % Total modeled velocities
+%v.Mod = v.Rot - v.Def - v.Tri; % Total modeled velocities
 
 
 % Stresses
