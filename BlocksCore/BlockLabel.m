@@ -210,6 +210,10 @@ function [S, b, st] = BlockLabel(s, b, st)
           ext = setdiff(1:nblock, alabel); % Special case for a north pole block
        end 
     end
+    
+    if isempty(ext) % Final test if exterior block has not been labeled; label it by area
+       [~, ext] = max(abs(barea));
+    end
 
     % treat exterior block segment labels - set exterior block for yet undefined segment labels
     el(el == 0) = ext;
