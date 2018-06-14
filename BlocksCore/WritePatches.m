@@ -13,11 +13,11 @@ end
 fprintf(fid, '%d\n', ne); % write number of elements
 if size(v, 2) == 3
    for i = 1:ne;
-	   fprintf(fid, '%d %d %d %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f\n', v(i, 1), v(i, 2), v(i, 3), trislipX(i), trislipY(i), trislipZ(i), trislipXSig(i), trislipYSig(i), trislipZSig(i), rad2deg(tristrikes(i)), blockslips(i), blockslipd(i), blockslipt(i));
+	   fprintf(fid, '%d %d %d %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f\n', v(i, 1), v(i, 2), v(i, 3), trislipX(i), trislipY(i), trislipZ(i), trislipXSig(i), trislipYSig(i), trislipZSig(i), tristrikes(i), blockslips(i), blockslipd(i), blockslipt(i));
    end
 elseif size(v, 2) == 4
    for i = 1:ne;
-	   fprintf(fid, '%d %d %d %d %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f\n', v(i, 1), v(i, 2), v(i, 3), v(i, 4), trislipX(i), trislipY(i), trislipZ(i), trislipXSig(i), trislipYSig(i), trislipZSig(i), rad2deg(tristrikes(i)), blockslips(i), blockslipd(i), blockslipt(i));
+	   fprintf(fid, '%d %d %d %d %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f %3.3f\n', v(i, 1), v(i, 2), v(i, 3), v(i, 4), trislipX(i), trislipY(i), trislipZ(i), trislipXSig(i), trislipYSig(i), trislipZSig(i), tristrikes(i), blockslips(i), blockslipd(i), blockslipt(i));
    end
 end
 fclose(fid);
