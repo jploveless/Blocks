@@ -1,0 +1,32 @@
+Name
+interior_long interior_lat
+Euler_long Euler_long_sig
+Euler_lat  Euler_lat_sig
+rotation_rate rotation_rate_sig
+strain_calc apriori_toggle
+other    other    other
+other    other    other
+Restoftheworld
+109.452   26.419
+290.670   0.230
+42.819   0.114
+17.150   0.200
+0.000   0
+0.000e+00   0.000e+00   0.000e+00
+0.000e+00   0.000e+00   0.000e+00
+NorthAmerica  
+254.007   38.001
+66.831   0.050
+-40.254   0.027
+1.146   0.009
+1.000   0
+4.507e-09   1.238e-08   -1.651e-10
+3.422e-11   1.431e-10   4.026e-11
+Pacific       
+240.132   32.523
+136.844   0.880
+-49.522   0.192
+0.544   0.003
+1.000   0
+3.246e-09   -4.260e-09   1.517e-09
+4.092e-11   8.491e-11   4.632e-11

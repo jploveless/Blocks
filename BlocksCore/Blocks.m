@@ -10,14 +10,20 @@ Station                                          = ReadStation(Command.staFileNa
 Sar                                              = ReadSar(Command.sarFileName); % Read SAR file
 Segment                                          = ReadSegmentTri(Command.segFileName); % Read segment file
 if isfield(Command, 'mshpFileName')
-   [Patches, Command]                            = ReadMshp(Command.mshpFileName, Command);
+   if ~isempty(Command.mshpFileName)
+      [Patches, Command]                         = ReadMshp(Command.mshpFileName, Command);
+   end
 else
    Patches                                       = ReadPatches(Command.patchFileNames);
 end   
 Station                                          = ProcessStation(Station, Command);
 Sar                                              = ProcessSar(Sar, Command);
 Segment                                          = ProcessSegment(Segment, Command);
-[Patches, Command]                               = ProcessPatches(Patches, Command, Segment);
+if sum(Segment.patchTog) > 0 & ~isempty(Patches.c) % if patches are involved at all
+   [Patches, Command]                            = ProcessPatches(Patches, Command, Segment);
+else
+   Patches                                       = struct('c', [], 'v', [], 'nc', 0, 'nEl', 0);
+end   
 Block                                            = ReadBlock(Command.blockFileName); % Read block file
 Mogi                                             = ReadMogi(Command.mogiFileName); % Read Mogi source file
 fprintf('done.\n')

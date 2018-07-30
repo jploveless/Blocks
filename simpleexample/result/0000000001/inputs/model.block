@@ -1,0 +1,32 @@
+Name
+interior_long interior_lat
+Euler_long Euler_long_sig
+Euler_lat  Euler_lat_sig
+rotation_rate rotation_rate_sig
+rotation_info apriori_toggle
+other    other    other
+other    other    other
+NorthAmerica  
+254.007   38.001
+0.000   1.000
+0.000   1.000
+0.000   0.000
+1.000   0
+0.000   0.000   0.000
+0.000   0.000   0.000
+Pacific       
+240.132   32.523
+0.000   1.000
+0.000   1.000
+0.000   0.000
+1.000   0
+0.000   0.000   0.000
+0.000   0.000   0.000
+Restoftheworld
+109.452   26.419
+0.000   1.000
+0.000   1.000
+0.000   0.000
+0.000   0
+0.000   0.000   0.000
+0.000   0.000   0.000

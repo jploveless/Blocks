@@ -1,0 +1,32 @@
+Name
+interior_long interior_lat
+Reference_long Reference_long_sig
+Reference_lat Reference_lat_sig
+rotation_rate rotation_rate_sig
+rotation_info apriori_toggle
+eLonLon eLonLat eLatLat
+eLonLonSig eLonLatSig eLatLatSig
+Restoftheworld
+109.452   26.419
+0.000   0.000
+0.000   0.000
+0.000   0.000
+0.000   0
+0.000e+00   0.000e+00   0.000e+00
+0.000e+00   0.000e+00   0.000e+00
+NorthAmerica  
+254.007   38.001
+241.144   0.000
+36.477   0.000
+0.000   0.000
+1.000   0
+4.507e-09   1.238e-08   -1.651e-10
+3.422e-11   1.431e-10   4.026e-11
+Pacific       
+240.132   32.523
+233.263   0.000
+33.634   0.000
+0.000   0.000
+1.000   0
+3.246e-09   -4.260e-09   1.517e-09
+4.092e-11   8.491e-11   4.632e-11
