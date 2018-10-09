@@ -76,7 +76,9 @@ omega(2:3:end) = y(:);
 omega(3:3:end) = z(:);
 
 strain = ReadBlockStrain([outdir filesep 'Strain.block']);
-nzstrain = strain.eLonLon ~= 0;
+nzblocks = false(length(Block.interiorLon));
+nzblocks(Station.blockLabel) = true;
+nzstrain = strain.eLonLon ~= 0 & nzblocks;
 strainvec = stack3([strain.eLonLon(nzstrain), strain.eLonLat(nzstrain), strain.eLatLat(nzstrain)]);
 
 % Do the forward problems
