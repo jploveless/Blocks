@@ -44,6 +44,7 @@ Command.dumpall                                       = 'no';
 Command.mogiFileName                                  = '';
 Command.solutionMethod                                = 'backslash';
 Command.ridgeParam                                    = 0;
+Command.triFullCoup                                   = 'no';
 
 % Read in commands one line at a time
 while 1
@@ -155,6 +156,9 @@ while 1
       
       case('triangulated patch files')
          Command.patchFileNames                       = strtrim(value);
+         
+      case('treat all triangles as fully coupled dislocation sources')   
+         Command.triFullCoup                          = lower(value);
 
       case('type of a priori slip constraint (1 = slip values, 2 = coupling fraction)')
          Command.triSlipConstraintType                = str2num(value);

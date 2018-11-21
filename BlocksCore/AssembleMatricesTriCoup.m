@@ -1,4 +1,4 @@
-function [R, d, W, Partials, Index] = AssembleMatrices(Partials, Data, Sigma, Index)
+function [R, d, W, Partials, Index] = AssembleMatricesTriCoup(Partials, Data, Sigma, Index)
 % 
 % % Trim arrays to eliminate vertical velocities and one triangular slip component
 % Partials.rotation                                = Partials.rotation(Index.staRowkeep, :);
@@ -15,7 +15,7 @@ function [R, d, W, Partials, Index] = AssembleMatrices(Partials, Data, Sigma, In
 % 
 % Update index sizes
 Index.szrot                                      = [length(Index.staRowkeep), size(Partials.rotation, 2)];
-Index.sztri                                      = [length(Index.staRowkeep), length(Index.triColkeep)];
+% Index.sztri                                      = [length(Index.staRowkeep), length(Index.triColkeep)];
 Index.szstrain                                   = [length(Index.staRowkeep), size(Partials.strain, 2)];
 Index.szmogi                                     = [length(Index.staRowkeep), size(Partials.mogi, 2)];
 % 
@@ -36,11 +36,11 @@ end
 rsar                                             = Data.nSar;
 rbcons                                           = Data.nBlockCon; % Block constraint rows
 rscons                                           = Data.nSlipCon; % Slip constraint rows
-rtriw                                            = length(Index.triSmoothkeep); % Triangular smoothing rows
-rtric                                            = length(Index.triConkeep); % Triangular edge constraint rows
+% rtriw                                            = length(Index.triSmoothkeep); % Triangular smoothing rows
+% rtric                                            = length(Index.triConkeep); % Triangular edge constraint rows
 
 cblock                                           = Index.szrot(2); % Block/slip columns
-ctri                                             = length(Index.triColkeep); % Triangle columns
+% ctri                                             = length(Index.triColkeep); % Triangle columns
 cstrain                                          = size(Partials.strain, 2); % Strain columns
 cmogi                                            = Index.szmogi(2); % Mogi source columns
 cramp                                            = Index.szramp(2); % SAR ramp columns
@@ -49,8 +49,8 @@ cramp                                            = Index.szramp(2); % SAR ramp c
  
 
 % Determine indices
-rnum                                             = [rsta rsar rbcons rscons rtriw rtric];
-cnum                                             = [cblock ctri cstrain cmogi cramp];
+rnum                                             = [rsta rsar rbcons rscons];
+cnum                                             = [cblock cstrain cmogi cramp];
 ridx                                             = cumsum([0 rnum]);
 cidx                                             = cumsum([0 cnum]);
 
@@ -63,22 +63,18 @@ end
 
 % Allocate space for Jacobian
 R                                                = zeros(ridx(end), cidx(end));
-
 % Place partials
-R(rows{1, 1}, cols{1, 1})                        = Partials.rotation(Index.staRowkeep, :) - Partials.elastic(Index.staRowkeep, :) * Partials.slip;
-R(rows{1, 2}, cols{1, 2})                        = -Partials.tri(Index.staRowkeep, Index.triColkeep);
-R(rows{1, 3}, cols{1, 3})                        = Partials.strain(Index.staRowkeep, :);
-R(rows{1, 4}, cols{1, 4})                        = Partials.mogi(Index.staRowkeep, :);
+R(rows{1, 1}, cols{1, 1})                        = Partials.rotation(Index.staRowkeep, :)...
+                                                 - Partials.elastic(Index.staRowkeep, :) * Partials.slip...
+                                                 - Partials.tri(Index.staRowkeep, Index.triColkeep) * Partials.trislip(Index.triColkeep, :);
+R(rows{1, 2}, cols{1, 2})                        = Partials.strain(Index.staRowkeep, :);
+R(rows{1, 3}, cols{1, 3})                        = Partials.mogi(Index.staRowkeep, :);
 R(rows{2, 1}, cols{2, 1})                        = Partials.srotation - Partials.selastic * Partials.slip;
-R(rows{2, 2}, cols{2, 2})                        = -Partials.stri(:, Index.triColkeep);
-R(rows{2, 3}, cols{2, 3})                        = Partials.sstrain;
-R(rows{2, 4}, cols{2, 4})                        = Partials.smogi;
-R(rows{2, 5}, cols{2, 5})                        = Partials.sramp;
+R(rows{2, 2}, cols{2, 2})                        = Partials.sstrain;
+R(rows{2, 3}, cols{2, 3})                        = Partials.smogi;
+R(rows{2, 4}, cols{2, 4})                        = Partials.sramp;
 R(rows{3, 1}, cols{3, 1})                        = Partials.blockCon;
 R(rows{4, 1}, cols{4, 1})                        = Partials.slipCon;
-R(rows{5, 2}, cols{5, 2})                        = Partials.smooth(Index.triSmoothkeep, Index.triColkeep);
-R(rows{6, 1}, cols{6, 1})                        = Partials.triBlockCon(Index.triConkeep, :);
-R(rows{6, 2}, cols{6, 2})                        = Partials.triSlipCon(Index.triConkeep, Index.triColkeep);
 
 % Allocate space for data and weight vectors
 d                                                = zeros(ridx(end), 1);
@@ -98,8 +94,4 @@ d(rows{3, 1})                                    = Data.blockCon;
 w(rows{3, 1})                                    = Sigma.blockConWgt./Sigma.blockCon.^2;
 d(rows{4, 1})                                    = Data.slipCon;
 w(rows{4, 1})                                    = Sigma.slipConWgt./Sigma.slipCon.^2;
-d(rows{5, 1})                                    = Data.smooth(Index.triSmoothkeep);
-w(rows{5, 1})                                    = Sigma.smooth(Index.triSmoothkeep);
-d(rows{6, 1})                                    = Data.triSlipCon(Index.triConkeep);
-w(rows{6, 1})                                    = Sigma.triSlipCon(Index.triConkeep);
 W                                                = diag(w); % convert weights into a diagonal matrix

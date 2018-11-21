@@ -76,7 +76,7 @@ Index                                            = staRowKeep(Data, Index);
 
 % Calculate partial derivatives relating displacement to slip on triangular dislocation elements
 if sum(Segment.patchTog) > 0 & ~isempty(Patches.c) % if patches are involved at all
-   if isempty(Partials.tri)
+   if isempty(Partials.tri) 
       fprintf('\n  Calculating triangular partials...')
       [Partials.tri, ~, Patches]                 = GetTriCombinedPartials(Patches, Data, [1 0]);
       [Partials.tri, Partials.stri]              = SarPartials(Partials.tri, Sar);
@@ -102,6 +102,9 @@ else
 
 end
 Index.sztri                                      = size(Partials.tri);
+if startsWith(Command.triFullCoup, 'yes')
+   Index.sztri(2)                                = 0;
+end
 
 % Calculate strain partials based on the method specified in the command file
 fprintf('\n  Calculating strain partials...')
@@ -118,7 +121,11 @@ Partials.mogi                                    = GetMogiPartials(Mogi, Data);
 
 % Assemble Jacobian
 fprintf('\n  Assembling design matrix, data vector, and weighting matrix...')
-[R, d, W, Partials, Index]                       = AssembleMatrices(Partials, Data, Sigma, Index);
+if startsWith(Command.triFullCoup, 'no')
+   [R, d, W, Partials, Index]                    = AssembleMatrices(Partials, Data, Sigma, Index);
+else
+   [R, d, W, Partials, Index]                    = AssembleMatricesTriCoup(Partials, Data, Sigma, Index);
+end
 fprintf('done.\n')
 
 % Estimate rotation vectors, triangular slip rates, and strain tensors
