@@ -16,6 +16,16 @@ c = char(textDump(idxVrtx));
 c = str2num(c(:, 5:end));
 c = c(:, 2:end);
 
+% Check if c is empty, move on to PVRTX if necessary
+if isempty(c)
+   c = char(textDump(idxPvrtx));
+   c = str2num(c(:, 6:end));
+   c = c(:, 2:4);
+end
+
 % Vertex array
 v = char(textDump(idxTrgl));
 v = str2num(v(:, 5:end));
+if min(v) == 0
+   v = v+1;
+end

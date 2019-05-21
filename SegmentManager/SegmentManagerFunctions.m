@@ -778,7 +778,7 @@ function SegmentManagerFunctions(option, displayTimingInfo)
             if strmatch(filenameFull(end-4:end), '.mshp')
                 P = ReadMshp(filenameFull); % Optional .mshp file containing multiple meshes
             else
-                P = ReadPatches(filenameFull, true);  % ignore spaces
+                P = ReadPatches(filenameFull);  % ignore spaces
             end
             h = patch('Vertices', P.c, 'faces', P.v, 'facecolor','g', 'edgecolor','black', 'tag','Patch');
             setappdata(gcf, 'Patch', P);

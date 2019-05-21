@@ -71,7 +71,7 @@ if ~exist('dtol', 'var')
   dtol                        = 0;
 end
 updip1                          = elo(find(abs(p.c(elo, 3)) <= dtol)); % Updip nodes
-[~, nodes]                     = edgeelements(p.c, p.v(vbegs(midx):vends(midx), :)); % Updip nodes
+[~, nodes]                     = edgeelements(p.c, p.v); % Updip nodes
 updip                          = nodes.top;
 
 % Find the corners
