@@ -1,4 +1,4 @@
-function S = snapsegments(s, p, sel, dtol)
+function S = snapsegments(s, p, sel, dtol, strthresh)
 % snapsegments  Snaps segments to trace the updip edge of patches.
 %   snapsegments(S, P, SEL, DTOL) moves segments in structure S so that
 %   they coincide with the updip edge of a patch described in structure P.
@@ -39,6 +39,11 @@ end
 dist                           = gcdist(sc(2), sc(1), mc(:, 2), mc(:, 1));
 [~, midx]                      = min(dist);
 
+% Check for corner strike threshold specification
+if ~exist('strthresh', 'var')
+   strthresh = 55; % Default for edgeeelements.m
+end
+
 % Find the segments that are at the ends of the selection. These will be split, with the new endpoint
 % coincident with the corner of the mesh.
 
@@ -68,10 +73,10 @@ elo                            = OrderedEdges(p.c, p.v(vbegs(midx):vends(midx), 
 elo                            = elo(1, [2:end, 1]); % Ordered edge nodes
 % Check for a depth tolerance
 if ~exist('dtol', 'var')
-  dtol                        = 0;
+  dtol                         = 0;
 end
-updip1                          = elo(find(abs(p.c(elo, 3)) <= dtol)); % Updip nodes
-[~, nodes]                     = edgeelements(p.c, p.v); % Updip nodes
+updip1                         = elo(find(abs(p.c(elo, 3)) <= dtol)); % Updip nodes
+[~, nodes]                     = edgeelements(p.c, p.v(vbegs(midx):vends(midx), :), strthresh); % Updip nodes
 updip                          = nodes.top;
 
 % Find the corners
