@@ -31,11 +31,14 @@ if numel(filenames) > 0
       % Check which spaces are really separating files
       notword                    = regexp(filenames(spaces(1:end-1)+1), '\W');
       spaces                     = spaces([notword, length(spaces)]);
-      nfiles                     = length(spaces) - 1;
+      nfiles                     = max([1, length(spaces) - 1]);
+      if nfiles == 1
+         spaces                  = [0 length(filenames)+1];
+      end
    else
       nfiles                     = size(filenames, 1);
    end
-   
+
    for i = 1:nfiles
       if exist('spaces', 'var')
          filename                = filenames(spaces(i)+1:spaces(i+1)-1);
