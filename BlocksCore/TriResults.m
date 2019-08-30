@@ -56,3 +56,8 @@ else
    Model.omegaEstTriSlip                      = stack3([Model.trislipS, Model.trislipD, Model.trislipT]);
    Model.omegaEstTriSlip                      = Model.omegaEstTriSlip(Index.triColkeep);
 end
+
+% Check for empty tri. slip
+if sum(size(Model.omegaEstTriSlip)) == 0
+   Model.omegaEstTriSlip = zeros(0, 1); % Match empty format for other unused parameters
+end
