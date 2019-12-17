@@ -19,7 +19,7 @@ end
 Station                                          = ProcessStation(Station, Command);
 Sar                                              = ProcessSar(Sar, Command);
 Segment                                          = ProcessSegment(Segment, Command);
-if sum(Segment.patchTog) > 0 & ~isempty(Patches.c) % if patches are involved at all
+if sum(Segment.patchTog) > 0 & exist('Patches', 'var') % if patches are involved at all
    [Patches, Command]                            = ProcessPatches(Patches, Command, Segment);
 else
    Patches                                       = struct('c', [], 'v', [], 'nc', 0, 'nEl', 0);
