@@ -12,6 +12,8 @@ Segment                                          = ReadSegmentTri(Command.segFil
 if isfield(Command, 'mshpFileName')
    if ~isempty(Command.mshpFileName)
       [Patches, Command]                         = ReadMshp(Command.mshpFileName, Command);
+   else
+      Patches                                       = ReadPatches(Command.patchFileNames);
    end
 else
    Patches                                       = ReadPatches(Command.patchFileNames);
