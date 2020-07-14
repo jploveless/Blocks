@@ -62,7 +62,7 @@ function ResultManagerFunctions(option, displayTimingInfo)
 
             % Check the extension of station files
             osn = dir([dirname filesep 'Obs.sta*']);
-            [~, ~, ext] = fileparts(osn.name);
+            [~, ~, ext] = fileparts(osn(1).name);
             if strmatch(ext, '.data')
                 ext = '.sta.data';
             end
