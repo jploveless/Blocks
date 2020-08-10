@@ -71,6 +71,7 @@ lambdap = rad_to_deg(atan2(num, den));
 % Pole latitude
 phip = atand(-cosd(lambdap - lambda1)./tand(phi1));
 sp = sign(phip);
+sp(sp==0) = 1;
 % Choose northern hemisphere pole
 lambdap(phip < 0) = lambdap(phip < 0) + 180;
 phip(phip < 0) = -phip(phip < 0);
