@@ -1,0 +1,145 @@
+
+body {  background-color: #FFFFFF;
+        background-image: url(../images/university_of_amsterdam.png);
+        background-repeat: repeat-y;
+        background-position: top,left;
+        padding-left: 50 px;
+        font-family: verdana, sans-serif;
+        font-size:100%;
+        line-height:1.75em;
+        width:600px;
+     }
+
+a      {
+        text-decoration:none;
+        color:#0000FF;
+        }
+a:hover {
+        background-color:#000000;
+        color:#00FFFF;
+        }
+
+h1 {
+       color: #990000;
+       font-size:125%;
+       margin-left:10px;
+       margin-right:10px;
+   }
+
+h1.code {
+          font-family:lucida console, courier, monospace, sans-serif;
+        }
+
+h2 {
+       color: #990000;
+       font-size:100%;
+       margin-left:20px;
+       margin-right:10px;
+   }
+
+
+div {
+      width:600px;
+      padding-top:10px;
+      padding-bottom:10px;
+      margin-left:40px;
+      border-right:1px solid #000000;
+      border-left:1px solid #000000;
+     }
+
+div.header {
+             background: #cccccc;
+             margin-top:40px;
+             border-top:1px solid #000000;
+             border-bottom: 1px solid #000000;
+           }
+
+
+td      {
+        vertical-align: top;
+        font-size:90%;
+        }
+
+td.code {
+            font-family:lucida console, courier, monospace, sans-serif;
+           }
+
+div.text {
+             border-left: 1px solid #000000;
+             border-right: 1px solid #000000;
+             background: #dddddd;
+           }
+
+div.text p {
+             background-color: #dddddd;
+             margin-left:20px;
+             margin-right:10px;
+             text-align: justify;
+             width:555px;
+             }
+
+div.text table  {
+             background: #dddddd;
+             margin-left:20px;
+             margin-right:10px;
+             }
+
+div.text td  {
+              padding-bottom:5px;
+             }
+
+div.par-val-div {
+             border-left: 1px solid #000000;
+             border-right: 1px solid #000000;
+             background: #dddddd;
+           }
+
+div.par-val-div table  {
+             background: #dddddd;
+             margin-left:20px;
+             margin-right:10px;
+             }
+
+div.par-val-div td  {
+              padding-bottom:5px;
+              padding-top:5px;
+              border-bottom:1px solid #bbbbbb;
+              line-height:1.75em;
+             }
+
+
+div.text ul li{
+             list-style-type:disc;
+             height:2em;
+             vertical-align:middle;
+             }
+
+div.spacer {
+             width:600px;
+             border-top:1px solid #000000;
+             border-right:1px solid #FFFFFF;
+             border-left:1px solid #FFFFFF;
+             height:0px;
+           }
+
+div.footer{border:0px solid #FFFFFF}
+
+div.linkheader
+           {
+            background-color: #ffffff;
+            background-image: url(../images/googleearth-header.png);
+            background-repeat: no-repeat;
+            background-position: top,left;
+            padding-left:0 px;
+            padding-top:160px;
+            width:600px;
+            border:0px;
+            
+           }
+
+
+pre {padding-left:20px;}
+.comment {color: #228B22;}
+.string  {color: #A020F0;}
+.keyword {color: #0000FF;}
+.syscmd  {color: #B28C00;}

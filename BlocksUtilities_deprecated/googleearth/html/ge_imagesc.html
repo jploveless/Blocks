@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_imagesc</title>
+  <meta name="keywords" content="ge_imagesc">
+  <meta name="description" content="Visualization of 2D rectangular matrices in Google Earth Viewer">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_imagesc&#0039;)">View source code of the function ge_imagesc() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_imagesc</h1></div>
+<div class="text"><p>Visualization of 2D rectangular matrices in Google Earth Viewer.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_imagesc(X,Y,M)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_imagesc(X,Y,M,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_imagesc(X,Y,M)</td></tr></table></div>
+
+<div class="text"><p>Visualizes gridded numerical data contained in variable &#0039;M&#0039; at locations specified by vectors &#0039;X&#0039; and &#0039;Y&#0039; of size Nx1. Note that <tt>X</tt> and <tt>Y</tt> should have constant spacing to avoid distortion.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_imagesc(X,Y,M,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'alphaMatrix'</td><td>2-D matrix specifying the alpha value for each element of &#0039;M&#0039;. Values range from 0 (transparent) to 1 (opaque).</td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'cLimHigh'</td><td>Specifies the value to which the maximum of the colorbar should apply. Default is max(M(:)).</td></tr>
+                    <tr><td class="code" nowrap>'cLimLow'</td><td>Specifies the value to which the minimum of the colorbar should apply. Default is min(M(:)).</td></tr>
+                    <tr><td class="code" nowrap>'colorMap'</td><td>Specifies the colormap to use for visualizing the grid cell colors. Default is &#0039;jet&#0039;, but any MATLAB colormap can be used.</td></tr>
+                    <tr><td class="code" nowrap>'crispFactor'</td><td>This function uses PNG image files to display matrices in GoogleEarth. However, images may appear fuzzy due to the compression applied by the GoogleEarth program. To make the image more crisp, you can increase the &#0039;crispFactor&#0039; parameter, at the cost of slower function evaluation and generating a bigger PNG file. Also, with big matrices you may run into memory problems. Value of the &#0039;crispFactor&#0039; parameter should be an integer larger than 0. Default is 5.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon. The green ellipse in <a href="images/ge_imagesc_with_description_dataFormatStr.png">this</a> example shows what the &#0039;dataFormatStr&#0039; applies to.</td></tr>
+                    <tr><td class="code" nowrap>'imgURL'</td><td>A character array containing the path to the image to be created and used by ge_imagesc(). Relative paths can be used.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;nanValue&#0039;</td><td>Specifies which value in input variable &quot;M&quot; should be treated as Not-a-Number (NaN).</td></tr>
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Whether the object is initially visible. Must be passed to ge_imagesc() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+                    <tr><td class="code" nowrap>'xResolution'</td><td>By-passes default derivation of grid x-resolution and assigns the value of this parameter to all cells instead.</td></tr>
+                    <tr><td class="code" nowrap>'yResolution'</td><td>By-passes default derivation of grid y-resolution and assigns the value of this parameter to all cells instead.</td></tr>
+                            
+                    
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum.</p>
+                  <p>Use imagesc() in combination with <a href="ge_colorbar.html">ge_colorbar()</a> to indicate to what values the colors in a map correspond.</p>
+                  <p> When you customize the appearance of the map, make sure to assign identical values to parameters &#0039;cMap&#0039;, &#0039;cLimLow&#0039;, and &#0039;cLimHigh&#0039; in the call to ge_imagesc() and ge_colorbar().</p>
+                  <p>When all values within M are identical, you should assign different values to parameters &#0039;cLimLow&#0039; and &#0039;cLimHigh&#0039; in the call to ge_imagesc() and ge_colorbar() to avoid a 'divideByZero' error.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_imagesc.m'))">demo_ge_imagesc</a> for more details.</p></div>
+<div class="text">
+<p>The above will generate a *.kml file that looks like the image below when opened in the Google Earth viewer.</p>
+   <p><img src="images/ge_imagesc_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

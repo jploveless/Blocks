@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_axes</title>
+  <meta name="keywords" content="ge_axes">
+  <meta name="description" content="Visualization of grid lines">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_axes&#0039;)">View source code of the function ge_axes() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_axes</h1></div>
+<div class="text"><p>Visualization of grid lines. Axes can be Cartesian (but with distortion due to projection type) or radial (also with distortion). Combinations of the following planes can be generated at once: xy, xz, and yz. For each plane, a separate folder will be created containing grid lines at the specified locations. In addition to the Cartesian axes, a radial axis can be specified as well, namely that of heading (i.e. direction on a compass).</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_axes('axesType',S)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_axes('axesType',S,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_axes('axesType',S)</td></tr></table></div>
+<div class="text"><p>Draws the grid lines of the axes specified by parameter 'axesType'. Set the value of S to combinations of the letters 'x', 'y', and 'z' in order to draw Cartesian axes. Set S to 'h' for a directional plot (heading). For each axis included in input variable &quot;S&quot;, you need to specify the locations of the tick marks (or equivalently, of the grid lines) using their respective parameters ('xTick', 'yTick' and 'zTick' for Cartesian; 'hTick' for radial). The grid lines of each plane will be organized into a separate folder bearing the name of the plane (e.g. 'xy-plane'). This will make it easier to enable or disable an entire plane in one mouseclick when viewing them in Google Earth.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_axes('axesType',S,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, a number of options can be set regarding the appearance of the grid lines. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Character array used in interpreting the position of objects along the vertical axis. Value can be one of &#0039;clampToGround&#0039;, &#0039;relativeToGround&#0039;, or &#0039;absolute&#0039;. Default is 'relativeToground'.</td></tr>
+                    <tr><td class="code" nowrap>'axesOrigin'</td><td>Numerical array of length 3, specifying the location where xy, xz, and yz planes intersect. Required when input parameter &quot;S&quot; consists of only 2 unique entries. Default is [min(xTick),min(yTick),min(zTick)] for Cartesian axes; for radial axes, &#0039;axesOrigin&#0039; is always user-specified.</td></tr>
+                    <tr><td class="code" nowrap>'axesType'</td><td>See description above.</td></tr>
+                    <tr><td class="code" nowrap>'hAxisLength'</td><td>Length of the axis in a heading plot in units of degrees.</td></tr>
+                    <tr><td class="code" nowrap>'hLineColor'</td><td>Line color specification for the grid lines in a heading plot. Includes transparency. Overrules 'lineColor'.</td></tr>
+                    <tr><td class="code" nowrap>'hTick'</td><td>Defines the position of the grid lines. Must be passed to &#0039;ge_axes&#0039; in units of degrees.</td></tr>
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTRRGGBB', with 'TT' representing transparency; 'RR', 'GG', and 'BB' representing red, green, and blue colors, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '80FF0000' is semi-transparent red and 'FF0000FF' is fully opaque blue. Default is 25% white. </td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Line width specification. Must be passed as a 1x1 numerical array. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'xTick'</td><td>Defines the position of the grid lines on the x-axis. Must be passed to &#0039;ge_axes&#0039; in units of degrees.</td></tr>
+                    <tr><td class="code" nowrap>'xyLineColor'</td><td>Line color specification, including transparency. Overrules 'lineColor' for the xy-plane grid lines.</td></tr>
+                    <tr><td class="code" nowrap>'xzLineColor'</td><td>Line color specification, including transparency. Overrules 'lineColor' for the xz-plane grid lines.</td></tr>
+                    <tr><td class="code" nowrap>'yzLineColor'</td><td>Line color specification, including transparency. Overrules 'lineColor' for the yz-plane grid lines.</td></tr>
+                    <tr><td class="code" nowrap>'yTick'</td><td>Defines the position of the grid lines on the y-axis. Must be passed to &#0039;ge_axes&#0039; in units of degrees.</td></tr>
+                    <tr><td class="code" nowrap>'zTick'</td><td>Defines the position of the grid lines on the z-axis. Must be passed to &#0039;ge_axes&#0039; in units of meters.</td></tr>
+                             
+
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text">
+   <p>Latitudes on the Southern hemisphere and longitudes on the Western hemisphere must be passed as negative values.</p>
+   <p>Some transformation may occur due to the projection.</p>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_axes.m'))">demo_ge_axes</a> for more details.</p></div>
+
+<div class="text">
+
+<pre>
+
+ 
+kmlStr = ge_axes(<span class="string">'axesType'</span>,<span class="string">'xyz'</span>,<span class="keyword">...</span>
+                    <span class="string">'xTick'</span>,5+[0:0.2:1.5],<span class="keyword">...</span>
+                    <span class="string">'yTick'</span>,52+[0:0.1:1.5],<span class="keyword">...</span>
+                    <span class="string">'zTick'</span>,[4e5:1e4:5e5],<span class="keyword">...</span>
+              <span class="string">'msgToScreen'</span>,true,<span class="keyword">...</span>
+              <span class="string">'xyLineColor'</span>,<span class="string">'FF0000FF'</span>,<span class="keyword">...</span>
+              <span class="string">'xzLineColor'</span>,<span class="string">'FF00FF00'</span>,<span class="keyword">...</span>
+              <span class="string">'yzLineColor'</span>,<span class="string">'FFFF0000'</span>,<span class="keyword">...</span>
+                <span class="string">'lineWidth'</span>,3);
+                
+
+ge_output(<span class="string">'demo_ge_axes.kml'</span>,kmlStr);
+
+</pre>
+
+
+
+</div>
+<div class="text"><p>The above lines of code will display as follows when viewed in Google Earth:</p><p><img src="images/ge_axes_example.png"></p></div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

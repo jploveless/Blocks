@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_colorbar</title>
+  <meta name="keywords" content="ge_colorbar">
+  <meta name="description" content="Adding a colorbar to images in Google Earth">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_colorbar&#0039;)">View source code of the function ge_colorbar() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a></p>
+</div>
+
+<div class="header"><h1 class="code">ge_colorbar</h1></div>
+<div class="text"><p>Add a colorbar to the Google Earth Viewer.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_colorbar(PosLon,PosLat,M)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_colorbar(PosLon,PosLat,M,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_colorbar(PosLon,PosLat,M)</td></tr></table></div>
+
+<div class="text"><p>Adds a colorbar to the Google Earth Viewer. The location of the colorbar can be specified in the variables &quot;PosLon&quot; (longitude) and &quot;PosLat&quot; (latitude). Variable &quot;M&quot; contains the numerical data that the colorbar refers to.</p><p>Colorbars are visualized within a text balloon. When collapsed, the location of the text balloon is indicated by a PlaceMark symbol (see image below).</p><p><img src="\images\ge_colorbar_placemark_symbol.png"></p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_colorbar(PosLon,PosLat,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, a number of options can be set regarding the appearance of the colorbar. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                       <tr><td class="code" nowrap>&#0039;altitude&#0039;</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;). Default is &#0039;clampedToGround&#0039;.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;altitudeMode&#0039;</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;cBarBorderWidth&#0039;</td><td>Specifies border width of the colorbar HTML table displayed in the pop-up window. Default is 1.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;cBarFormatStr&#0039;</td><td>This parameter specifies how the numbers on the colorbar are displayed. Default is &#0039;%g&#0039;. See <a href="matlab:doc(&#0039;matlab/sprintf&#0039;)">doc sprintf</a>.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;cLimHigh&#0039;</td><td>Specifies the value to which the maximum of the colorbar should apply. Default is max(M(:)).</td></tr>
+                       <tr><td class="code" nowrap>&#0039;cLimLow&#0039;</td><td>Specifies the value to which the minimum of the colorbar should apply. Default is min(M(:)).</td></tr>
+                       <tr><td class="code" nowrap>&#0039;colorMap&#0039;</td><td>Specifies the colormap to use for visualizing the grid cell colors. Default is &#0039;jet&#0039;, but any MATLAB colormap can be used.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;extrude&#0039;</td><td>Connects the colorbar PlaceMark symbol to the surface of the Earth by a thin line. See example <a href="images/ge_colorbar_extrude_example.png">here</a>.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;labels&#0039;</td><td>Scalar, or N-array, equal in length to the levels provided/generated.  This is user defined, and should be a cell array of character string elements.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                       <tr><td class="code" nowrap>&#0039;name&#0039;</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;nanValue&#0039;</td><td>Specifies which value in input variable &quot;M&quot; should be treated as Not-a-Number (NaN).</td></tr>
+                       <tr><td class="code" nowrap>&#0039;numClasses&#0039;</td><td>Specifies number of color classes to be used for the colorbar. Default is 15.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;visibility&#0039;</td><td>Whether the object is initially visible. Must be passed to ge_box() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+
+
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+                  <p>Use <a href="ge_imagesc.html">imagesc()</a> in combination with ge_colorbar() to indicate to what values the colors in the map correspond.</p>
+                  <p> When you customize the appearance of a map, make sure to assign identical values to parameters &#0039;cMap&#0039;, &#0039;cLimLow&#0039;, and &#0039;cLimHigh&#0039; in the call to ge_imagesc() and ge_colorbar().</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes are in meters.</p>
+</div>
+</div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_colorbar.m'))">demo_ge_colorbar</a> for more details.</p></div>
+<div class="text"><p>Also see under <a href="ge_imagesc.html">ge_imagesc()</a>.</p></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Cross-reference information<a href="#_top"><img alt="go to top" margin="6" border="0" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><h2>Parent(s)</h2></div>
+<div class="text">
+            <ul>
+                    <li>demo_ge_imagesc</li>
+            </ul></div>
+<div class="text"><h2>Children</h2></div>
+<div class="text">
+            <ul>
+                  <li>None</li>
+            </ul></div>
+<div class="text"><h2>Local function(s)</h2></div>
+<div class="text"><ul>
+                        <li>conv_coord</li>
+                        <li>conv2colorstr</li>
+                        <li>trim_trail_zero</li>
+                  </ul></div>
+<div class="spacer"></div>
+<div class="header"><h1>See also<a href="#_top"><img alt="go to top" margin="6" border="0" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p><a href="ge_poly.html">ge_poly()</a><br><a href="ge_output.html">ge_output()</a></p></div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

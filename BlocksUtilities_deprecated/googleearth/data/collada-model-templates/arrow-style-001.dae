@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:245 - Illusoft Collada Exporter v:0.3.159</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data></source_data>
+		</contributor>
+		<created>2008-01-12T15:34:42.865000</created>
+		<modified>2008-01-12T15:34:42.865000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="Material-fx" name="Material-fx">
+			<profile_COMMON>
+				<technique sid="blender">
+					<phong>
+						<diffuse>
+							<color>%6.5f %6.5f %6.5f 1</color>
+						</diffuse>
+						<transparency>
+							<float>%6.5f</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material id="Material" name="Material">
+			<instance_effect url="#Material-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Plane-Geometry" name="Plane-Geometry">
+			<mesh>
+				<source id="Plane-Geometry-Position">
+					<float_array count="66" id="Plane-Geometry-Position-array">0.74176 1.00000 0.23144 0.39446 -1.06608 0.23144 -0.39446 -1.06608 0.23144 -0.74176 1.00000 0.23144 0.00000 1.99084 0.23144 -0.00000 -1.00000 0.23144 0.26649 1.13647 0.23144 -0.26649 1.13647 0.23144 -0.26649 1.13647 -0.20251 -0.39446 -1.06608 -0.20251 -0.74176 1.00000 -0.20251 -0.26649 1.13647 -0.20251 0.00000 1.99084 -0.20251 0.26649 1.13647 -0.20251 0.74176 1.00000 -0.20251 0.00000 1.99084 -0.20251 0.39446 -1.06608 -0.20251 0.26649 1.13647 -0.20251 -0.00000 -1.00000 -0.20251 0.39446 -1.06608 -0.20251 -0.39446 -1.06608 -0.20251 -0.00000 -1.00000 -0.20251</float_array>
+					<technique_common>
+						<accessor count="22" source="#Plane-Geometry-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Plane-Geometry-Normals">
+					<float_array count="60" id="Plane-Geometry-Normals-array">-0.99832 0.05800 0.00000 0.27600 -0.96116 0.00000 -0.80053 0.59929 0.00000 -0.27600 -0.96116 0.00000 0.80053 0.59929 0.00000 0.99832 0.05800 0.00000 -0.16522 -0.98626 0.00000 0.16522 -0.98626 0.00000 0.00000 0.00000 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000 -1.00000 0.00000 0.00000 -1.00000 0.00000 0.00000 -1.00000 0.00000 0.00000 -1.00000 0.00000 0.00000 -1.00000 0.00000 0.00000 -1.00000</float_array>
+					<technique_common>
+						<accessor count="20" source="#Plane-Geometry-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Plane-Geometry-Vertex">
+					<input semantic="POSITION" source="#Plane-Geometry-Position"/>
+				</vertices>
+				<triangles count="28" material="Material">
+					<input offset="0" semantic="VERTEX" source="#Plane-Geometry-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Plane-Geometry-Normals"/>
+					<p>2 0 7 0 8 0 8 0 9 0 2 0 7 1 3 1 10 1 10 1 11 1 7 1 3 2 4 2 12 2 12 2 10 2 3 2 0 3 6 3 13 3 13 3 14 3 0 3 4 4 0 4 14 4 14 4 15 4 4 4 6 5 1 5 16 5 16 5 17 5 6 5 1 6 5 6 18 6 18 6 19 6 1 6 5 7 2 7 20 7 20 7 21 7 5 7 7 8 4 8 3 8 6 9 4 9 7 9 0 10 4 10 6 10 6 11 7 11 2 11 5 12 6 12 2 12 1 13 6 13 5 13 13 14 16 14 18 14 17 15 21 15 20 15 8 16 13 16 9 16 12 17 14 17 17 17 8 18 12 18 13 18 10 19 12 19 11 19</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="Plane" name="Plane">
+				<translate sid="translate">0.00335 689.11401 0.00000</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 0.00000</rotate>
+				<scale sid="scale">669.90350 669.90350 669.90350</scale>
+				<instance_geometry url="#Plane-Geometry">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="Material" target="#Material">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>

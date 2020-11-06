@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+<asset>
+	<contributor>
+		<author>MATLAB Collada exporter, Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+		<authoring_tool>MATLAB Collada exporter, Blender v:242 - Illusoft Collada Exporter v:0.2.65</authoring_tool>
+		<comments></comments>
+		<copyright></copyright>
+		<source_data>untitled.blend</source_data>
+	</contributor>
+	<created>29-Apr-2007 18:01:28</created>
+	<modified>29-Apr-2007 18:01:28</modified>
+	<unit meter="0.01" name="centimeter"/>
+	<up_axis>Z_UP</up_axis>
+</asset>
+<library_effects>
+	<effect id="Material_001-fx" name="Material_001-fx">
+		<profile_COMMON>
+			<technique sid="">
+				<phong>
+					<emission>
+						<color>0.0 0.0 0.0 1.0</color>
+					</emission>
+					<ambient>
+						<color>0.48814 0.02131 0.02131 1.0</color>
+					</ambient>
+					<diffuse>
+						<color>0.000 1.000 1.000 1.0</color>
+					</diffuse>
+					<specular>
+						<color>0.5 0.5 0.5 1.0</color>
+					</specular>
+					<shininess>
+						<float>12.5</float>
+					</shininess>
+					<reflective>
+						<color>1.0 1.0 1.0 1.0</color>
+					</reflective>
+					<reflectivity>
+						<float>0.8</float>
+					</reflectivity>
+					<transparent>
+						<color>1 1 1 1</color>
+					</transparent>
+					<transparency>
+						<float>0.000</float>
+					</transparency>
+				</phong>
+			</technique>
+		</profile_COMMON>
+	</effect>
+</library_effects>
+<library_geometries>
+<geometry id="Plane-Geometry" name="Plane-Geometry">
+   <mesh>
+       <source id="Plane-Geometry-Position">
+           <float_array count="42" id="Plane-Geometry-Position-array"> 0.000000 0.000000 0.000000 -2.000000 -0.000000 0.000000 -2.000000 100.000000 0.000000 2.000000 100.000000 0.000000 32.512534 114.999509 0.000000 32.512534 111.999509 0.000000 2.000000 97.000000 0.000000 2.000000 93.000000 0.000000 32.512534 107.999509 0.000000 32.512534 104.999509 0.000000 2.000000 90.000000 0.000000 2.000000 86.000000 0.000000 2.000000 0.000000 0.000000 0.000000 0.000000 0.000000 </float_array>
+           <technique_common>
+               <accessor count="14" source="#Plane-Geometry-Position-array" stride="3">
+                  <param name="X" type="float"/>
+                  <param name="Y" type="float"/>
+                  <param name="Z" type="float"/>
+               </accessor>
+            </technique_common>
+       </source>
+       <source id="Plane-Geometry-Normals">
+           <float_array count="42" id="Plane-Geometry-Normals-array"> 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1</float_array>
+			<technique_common>
+               <accessor count="14" source="#Plane-Geometry-Normals-array" stride="3">
+                  <param name="X" type="float"/>
+                  <param name="Y" type="float"/>
+                  <param name="Z" type="float"/>
+               </accessor>
+           </technique_common>
+       </source>
+       <vertices id="Plane-Geometry-Vertex">
+           <input semantic="POSITION" source="#Plane-Geometry-Position"/>
+           <input semantic="NORMAL" source="#Plane-Geometry-Normals"/>
+       </vertices>
+       <triangles count="6" material="Material_001">
+           <input offset="0" semantic="VERTEX" source="#Plane-Geometry-Vertex"/>
+           <p>1 12 2 2 12 3 3 5 4 5 3 6 7 9 8 9 7 10</p>
+       </triangles>
+    </mesh>
+</geometry>
+</library_geometries>
+<library_materials>
+    <material id="Material_001" name="Material_001">
+       <instance_effect url="#Material_001-fx"/>
+    </material>
+</library_materials>
+<library_visual_scenes>
+   <visual_scene id="Scene" name="Scene">
+      <node id="Plane" name="Plane">
+         <instance_geometry url="#Plane-Geometry">
+            <bind_material>
+               <technique_common>
+                  <instance_material symbol="Material_001" target="#Material_001"/>
+               </technique_common>
+            </bind_material>
+         </instance_geometry>
+      </node>
+   </visual_scene>
+</library_visual_scenes>
+<scene>
+   <instance_visual_scene url="#Scene"/>
+</scene>
+</COLLADA>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_barbdaes</title>
+  <meta name="keywords" content="ge_barbdaes">
+  <meta name="description" content="Generates windbarb COLLADA models (*.dae) for displaying wind speed and direction on both hemispheres.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_barbdaes&#0039;)">View source code of the function ge_barbdaes() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a></p>
+</div>
+
+
+<div class="header"><h1 class="code">ge_barbdaes</h1></div>
+<div class="text"><p>Generates windbarb collada models (*.dae) for displaying wind speed and direction on both hemispheres. With the generated set, wind speeds of up to 190 km/h can be represented. The function also allows for explicit specification of the color and transparency of the windbarbs.</p></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p><pre>ge_barbdaes</pre></p>
+                  <p><pre>ge_barbdaes(Parameter,Value)</pre></p>
+</table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p><pre>ge_barbdaes</pre></p>
+<p>Generates a set of 40 different XML based ASCII files containing <a href="collada_models.html">collada models</a> of windbarbs. These are typically used in meteorology for visualizing the wind speed and direction. The complete set can be seen <a href="images/n_arrows.png">here</a> (northern hemisphere) and <a href="images/s_arrows.png">here</a> (southern hemisphere). Each half pennant represents 5 knots (1 knot = 0.51 m/s); each whole pennant represents 10 knots; each flag represents 50 knots. The default windbarb set consists of 50% transparent white barbs, but both color and transparency can be specified by the user (see below).</p></div>
+<div class="text">
+<p><pre>ge_barbdaes(Parameter,Value)</pre></p>
+<p>Same as above, but allows for specification of additional options.<p>Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'barbAlpha'</td><td>2-digit hexadecimal specification of the transparency of the windbarb ('00' is fully transparent; 'FF' fully opaque). Default value is &#0039;80&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'barbColor'</td><td>6-digit hexadecimal specification of the color to be used for the body of the windbarb. Default value is &#0039;FFFFFF&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'daeDir'</td><td>Character array with the target directory where the *.dae files should be saved. Default value is &#0039;&#0047;daes&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+</table></div>
+
+<div class="spacer"></div>
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Pennants are on different sides of the barb depending on the hemisphere.</p></div>
+
+<div class="spacer"></div>
+<div class="header"><h1>See also<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p><a href="ge_windbarb.html">ge_windbarb()</a><br><a href="collada_models.html">collada models</a></p></div>
+
+
+<div class="spacer"></div>
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

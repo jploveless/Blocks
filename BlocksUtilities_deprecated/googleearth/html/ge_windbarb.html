@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_windbarb</title>
+  <meta name="keywords" content="ge_windbarb">
+  <meta name="description" content="Visualization of wind speed and direction in the Google Earth Viewer using standard symbols">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_windbarb&#0039;)">View source code of the function ge_windbarb() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_windbarb</h1></div>
+<div class="text"><p>Visualization of 2D directional wind data using standard wind barb symbols to indicate speed and direction of the wind.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_windbarb(X,Y,Z,U,V)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_windbarb(X,Y,Z,U,V,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_windbarb(X,Y,Z,U,V)</td></tr></table></div>
+<div class="text"><p>Places <a href="collada_models.html">Collada models</a> of wind barbs at locations specified by &quot;X&quot; (longitude), &quot;Y&quot; (latitude), and &quot;Z&quot; (elevation). The direction of each arrow is determined from its components &quot;U&quot; (positive in the direction of positive longitude) and &quot;V&quot; (positive in the direction of positive latitude). The type of arrow is determined from the wind speed (vector length) and the hemisphere (see <a href="ge_barbdaes.html">ge_barbdaes()</a>). If &quot;Z&quot; is the same for all locations, it can be passed as a scalar.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_windbarb(X,Y,Z,U,V,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'arrowScale'</td><td>Scales the arrow, but allows for varying of the arrow length with fluctuations in vector components &quot;U&quot;, &quot;V&quot;, and &quot;W&quot;. Default is 1.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'rLink'</td><td>This parameter defines the relative link between the location of the kml-file and the directory where the windbarb COLLADA models are located. For example, if our kml-file resides in a directory &#0039;D:\googleearth\&#0039; together with two folders named &#0039;red&#0039; and &#0039;blue&#0039;, respectively containing a set of red and blue windbarb collada models, the relative link would be &#0039;blue\&#0039; to point to the set of blue barbs.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes must be passed in units of meters. Input parameters &quot;U&quot; and &quot;V&quot; must be passed to ge_windbarb in units of m/s.</p>
+                  <p>Input variables &quot;X&quot;, &quot;Y&quot;, and &quot;Z&quot; define the origin of the arrows.</p>
+ </div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_windbarb.m'))">demo_ge_windbarb</a> for more details.</p></div>
+<div class="text">
+<p>How to generate and display a windbarb representing a wind speed of 22.9504 knots coming in from a direction of 70.0169 degrees.</p>
+<pre>
+
+X = 4.778582;    <span class="comment">% longitude</span>
+Y = 52.921329;   <span class="comment">% latitude</span>
+Z = 100;         <span class="comment">% elevation</span>
+
+U = 11;          <span class="comment">% wind speed vector x-component</span>
+V = 4;           <span class="comment">% wind speed vector y-component</span>
+
+<span class="comment">% specify directory to store collada models:</span>
+daeDir = [<span class="string">'daes'</span>,filesep];   
+
+<span class="comment">% generate lime-colored collada models:</span>
+ge_barbdaes(<span class="string">'daeDir'</span>,daeDir,<span class="keyword">...</span>
+                <span class="string">'barbColor'</span>,<span class="string">'00FF00'</span>,<span class="keyword">...</span>
+                <span class="string">'barbAlpha'</span>,<span class="string">'A0'</span>)
+
+<span class="comment">% place the right arrow at the right location:</span>
+kmlStr = ge_windbarb(X,Y,Z,U,V,<span class="keyword">...</span>
+                     <span class="string">'rLink'</span>,daeDir,<span class="keyword">...</span>
+                <span class="string">'arrowScale'</span>,5e3);
+    
+<span class="comment">%write the kmlStr to file:</span>
+ge_output(<span class="string">'denhelder.kml'</span>,kmlStr,<span class="keyword">...</span>
+                   <span class="string">'name'</span>,<span class="string">'De Kooy airfield'</span>)
+</pre>
+
+<p>The above will yield the following when viewed in Google Earth:</p>
+   <p><img src="images/ge_windbarb_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_poly</title>
+  <meta name="keywords" content="ge_poly">
+  <meta name="description" content="Visualization of 2D polygons parallel to the Earth's surface">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_poly&#0039;)">View source code of the function ge_poly() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_poly</h1></div>
+<div class="text"><p>Visualization of 2D polygons parallel to the Earth's surface.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_poly(X,Y)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_poly(X,Y,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_poly(X,Y)</td></tr></table></div>
+
+<div class="text"><p>Draws polygons at coordinates specified by vectors &#0039;X&#0039; and &#0039;Y&#0039;. Coordinates belonging to different polygons should be separated by NaNs. Unclosed polygons are closed by default if they consist of 3 or more points. By default the polygon color and polygon outline will be fully opaque white.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_poly(X,Y,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the polygon when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options for ge_poly(). The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;. Default is &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'autoClose'</td><td>If polygons do not start at the location where they end, they are unclosed. The Google Earth Viewer automatically closes unclosed polygons consisting of more than 3 points. Though the Google Earth Viewer closes the outline of unclosed polygons of 3 points, it does not fill the polygon surface. However, unclosed polygons consisting of 3 or more points will be automatically closed during generation of &quot;kmlStr&quot; if &#0039;autoClose&#0039; is set to logical(1) or true. Default value is true.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon.</td></tr>
+                    <tr><td class="code" nowrap>'extrude'</td><td>See <a href="extrude.html">Extruding objects</a>.</td></tr>                    
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTRRGGBB', with 'TT' representing transparency; 'RR', 'GG', and 'BB' representing red, green, and blue colors, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '80FF0000' is semi-transparent red and 'FF0000FF' is fully opaque blue.</td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Width of the polygon outline.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+                    <tr><td class="code" nowrap>'polyColor'</td><td>Polygon color specification, see parameter &#0039;lineColor&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'tessellate'</td><td>See <a href="tessellate.html">Tessellation</a>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Whether the object is initially visible. Must be passed to ge_poly() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+
+                             
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum. Altitudes are in meters.</p></div>
+
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_poly.m'))">demo_ge_poly</a> for more details.</p></div>
+<div class="text">
+<p>The source code below constitutes an example of how ge_poly() may be used.
+</p>
+<pre>
+
+angleRad = linspace(0,2*pi,6);
+
+pentaX = [4*sin(angleRad);sin(angleRad+pi*0.2)];
+pentaY = [4*cos(angleRad);cos(angleRad+pi*0.2)];
+
+x = pentaX(:);
+y = pentaY(:);
+
+X = [];
+Y = [];
+
+<span class="keyword">for</span> p=-25:6:25
+    X=[X;NaN;x+p];
+    Y=[Y;NaN;y+p];
+<span class="keyword">end</span>
+
+kmlStr = ge_poly(X,Y,<span class="string">'polyColor'</span>,<span class="string">'FF000000'</span>,<span class="keyword">...</span>
+                     <span class="string">'lineColor'</span>,<span class="string">'FF00FF00'</span>,<span class="keyword">...</span>
+                     <span class="string">'lineWidth'</span>,2);
+
+ge_output(<span class="string">'example_ge_poly.kml'</span>,kmlStr)
+</pre>
+   <p>The above will generate a *.kml file that looks like the image below when opened in the Google Earth viewer.</p>
+   <p><img src="images/ge_poly_example.png"></p>
+</div>
+<div class="spacer"></div>
+
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - Collada modes</title>
+  <meta name="keywords" content="collada models">
+  <meta name="description" content="Collada models">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">Collada models</h1></div>
+<div class="text"><p>Collada models are 3D models based on XML grammar, therefore they are just ascii-text files. The full specification can be found <a href="matlab:openInBrowser('https://collada.org/public_forum/files/COLLADA_Specification_131.pdf')"> online</a>. These files have a *.dae extension and can be generated with open source software such as <a href="matlab:openInBrowser('www.blender.org')">Blender</a> or with proprietary software such as Google's own <a href="matlab:openInBrowser('http://www.sketchup.com/')">Sketchup Pro</a>. To be able to use Collada models as arrows (such as with <a href="ge_quiver3.html">ge_quiver3()</a>), they should be centered along the positive y-axis in a Cartesian coordinate space. Using Collada models for plotting vectors in 3D space can really decrease file size relative to plotting all arrows manually by using functions such as <a href="ge_poly.html">ge_poly()</a>. This is because there has to be only one specification of the 3D arrow model, which can be plotted at any number of locations on Google Earth. Note that rendering speed while viewing COLLADA models in Google Earth may vary depending on your graphics card.</p></div>
+<div class="spacer"></div>
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>

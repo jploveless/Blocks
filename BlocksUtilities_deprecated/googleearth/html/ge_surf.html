@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Google Earth toolbox - ge_surf</title>
+  <meta name="keywords" content="ge_surf">
+  <meta name="description" content="Visualization of manifold surfaces in Google Earth Viewer">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="robots" content="index, follow">
+  <meta author="Jurriaan H. Spaaks">
+  <meta author="Scott L. Davis">
+  <link type="text/css" rel="stylesheet" href="styles/ge_styles.css">
+</head>
+
+<body>
+<a name="_top"></a>
+
+<div class="linkheader">
+<a href="matlab:edit(&#0039;ge_surf&#0039;)">View source code of the function ge_surf() in the MATLAB editor</a><br>
+<a href="contents.html">Google Earth toolbox contents</a>
+</div>
+
+
+<div class="header"><h1 class="code">ge_surf</h1></div>
+<div class="text"><p>Visualization of manifold surfaces in Google Earth Viewer.</p></div>
+<div class="spacer"></div>
+<div class="header"><h1>Syntax<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table>
+             <tr><td class="code" nowrap>kmlStr = ge_surf(X,Y,M)</td></tr>
+             <tr><td class="code" nowrap>kmlStr = ge_surf(X,Y,M,Parameter,Value)</td></tr></table></div>
+<div class="spacer"></div>
+<div class="header"><h1>Description<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_surf(X,Y,M)</td></tr></table></div>
+
+<div class="text"><p>Visualizes gridded numerical data contained in variable &#0039;M&#0039; at locations specified by vectors &#0039;X&#0039; and &#0039;Y&#0039; of size Nx1. Contrary to the related <a href="ge_imagesc.html">ge_imagesc()</a> function, the number of grid cells in the surface plot will be N-1 in both the latitudinal and longitudinal direction.</p></div>
+<div class="text"><table><tr><td class="code" nowrap>kmlStr = ge_surf(X,Y,M,Parameter,Value)</td></tr></table></div>
+<div class="text"><p>In addition to the above, this syntax also allows for specification of a number of parameters regarding the appearance of the data when viewed in Google Earth. Assigning values to the parameters can be accomplished by inclusion of an alternating sequence of parameters and their value. The table below provides an overview of the authorized options. The order in which the parameters are included does not matter. Please be aware that the options are case-sensitive. Examples are provided further down.</p></div>
+<div class="par-val-div"><table>
+                    <tr><td nowrap><b>Parameter</b></td><td nowrap><b>Description</b></td></tr>
+                    <tr><td class="code" nowrap>'altitude'</td><td>Height difference relative to the plane of reference (see parameter &#0039;altitudeMode&#0039;).</td></tr>
+                    <tr><td class="code" nowrap>'altitudeMode'</td><td>Specifies which plane of reference to use. Must be one of &#0039;absolute&#0039;, &#0039;relativeToGround&#0039; or &#0039;clampToGround&#0039;.</td></tr>
+                    <tr><td class="code" nowrap>'altRefLevel'</td><td>Reference level for elevation; by varying this parameter the surface plot is moved vertically. </td></tr>
+                    <tr><td class="code" nowrap>'cLimHigh'</td><td>Specifies the value to which the maximum of the colorbar should apply. Default is max(M(:)).</td></tr>
+                    <tr><td class="code" nowrap>'cLimLow'</td><td>Specifies the value to which the minimum of the colorbar should apply. Default is min(M(:)).</td></tr>
+                    <tr><td class="code" nowrap>'cMap'</td><td>Specifies the colormap to use for visualizing the grid cell colors. Default is &#0039;jet&#0039;, but any MATLAB colormap can be used.</td></tr>
+                    <tr><td class="code" nowrap>'description'</td><td>A description of objects can be included using this parameter. Its value must be passed as a character array. It will be displayed in the Google Earth Viewer within a pop-up text balloon.</td></tr>
+                    <tr><td class="code" nowrap>'extrude'</td><td>See <a href="extrude.html">Extruding objects</a>.</td></tr>
+                    <tr><td class="code" nowrap>'lineColor'</td><td>Line color specification, including transparency. Color value format must be passed as a character array according to the format string 'TTBBGGRR', with 'TT' representing transparency; 'BB', 'GG', and 'RR' representing blue, green, and red color intensity, respectively. Intensity values are denoted as two-digit hexadecimal numbers ranging from 00 to FF. For example, '0000FF00' is fullly transparent green and 'FF0000FF' is fully opaque red.</td></tr>
+                    <tr><td class="code" nowrap>'lineWidth'</td><td>Width of the line between grid cells.</td></tr>
+                    <tr><td class="code" nowrap>&#0039;msgToScreen&#0039;</td><td>Defines whether verbose feedback is provided by the function when it is accessed and when it finishes. Default is false (which is equivalent to logical(0), but quicker). </td></tr>
+                    <tr><td class="code" nowrap>'name'</td><td>This character array will be used within the Google Earth Viewer &#0039;Places&#0039; pane to identify objects.</td></tr>
+                       <tr><td class="code" nowrap>&#0039;nanValue&#0039;</td><td>Specifies which value (besides NaN itself) in input variable &quot;M&quot; should be treated as Not-a-Number (NaN).</td></tr>
+                    <tr><td class="code" nowrap>'polyAlpha'</td><td>2-digit hexadecimal character array specifying the transparency of the grid ('00' is fully transparent; 'FF' is fully opaque).</td></tr>
+                    <tr><td class="code" nowrap>'snippet'</td><td>A short description of the feature. In Google Earth, this description is displayed in the Places panel under the name of the feature. If a Snippet is not supplied, the first two lines of the description are used</td></tr>
+                    <tr><td class="code" nowrap>'tessellate'</td><td>See <a href="tessellate.html">Tessellation</a>.</td></tr>
+<!--                    <tr><td class="code" nowrap>'timeStamp'</td><td>See <a href="timestamp.html">timeStamp, timeSpanStart and timeSpanStop</a>.</td></tr>-->
+                    <tr><td class="code" nowrap>'timeSpanStart'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'timeSpanStop'</td><td>See <a href="timestamp.html">Dynamic visualization</a>.</td></tr>
+                    <tr><td class="code" nowrap>'vertExagg'</td><td>Vertical exaggeration. By varying this parameter, differences within the data become exaggerated vertically.</td></tr>
+                    <tr><td class="code" nowrap>'visibility'</td><td>Whether the object is initially visible. Must be passed to ge_surf() as a numerical value 1 or 0. Visibility state can be changed within the Google Earth Viewer by clicking the object&#0039;s checkmark in the &#0039;Places&#0039; pane.</td></tr>
+                    <tr><td class="code" nowrap>'xResolution'</td><td>By-passes default derivation of grid x-resolution and assigns the value of this parameter to all cells instead.</td></tr>
+                    <tr><td class="code" nowrap>'yResolution'</td><td>By-passes default derivation of grid y-resolution and assigns the value of this parameter to all cells instead.</td></tr>
+
+                             
+</table></div>
+<div class="spacer"></div>
+
+<div class="header"><h1>Remarks<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>Latitudes on the Southern hemisphere must be passed as negative values. Same for longitudes on the Western hemisphere.</p>
+<p>Latitudes and longitudes should be passed in units of decimal degrees (also known as fractional degrees). Google Earth uses Simple Cylindrical projection (also known as Plate Car&#233;e) with a WGS84 datum.</p>
+                  <p>Use surf() in combination with <a href="ge_colorbar.html">ge_colorbar()</a> to indicate to what values the colors in a map correspond.</p>
+                  <p> When you customize the appearance of the map, make sure to assign identical values to parameters &#0039;cMap&#0039;, &#0039;cLimLow&#0039;, and &#0039;cLimHigh&#0039; in the call to ge_surf() and ge_colorbar().</p>
+                  <p>When all values within M are identical, you should assign different values to parameters &#0039;cLimLow&#0039; and &#0039;cLimHigh&#0039; in the call to ge_surf() and ge_colorbar() to avoid a 'divideByZero' error.</p>
+                  <p>The ge_surf() function can also be used to generate mesh-like plots. In order to do this, set the &#0039;polyAlpha&#0039; parameter to &#0039;00&#0039; and make sure &#0039;lineColor&#0039; isn&#0039;t fully transparent.</p>
+
+</div>
+
+<div class="spacer"></div>
+
+<div class="header"><h1>Examples<a href="#_top"><img alt="go to top" border="0" margin="6" valign="top" align="right" src="images/up.png"></a></h1></div>
+<div class="text"><p>See the demo file <a href="matlab:edit(url_from_folder('demo','demo_ge_surf.m'))">demo_ge_surf</a> for more details.</p></div>
+<div class="text">
+<p>The source code below constitutes an example of how ge_surf() and ge_colorbar() may be used to their full potential.
+</p>
+<pre>
+z = peaks(30);
+x = linspace(3.5,5.5,size(z,2));
+y = linspace(51,52.5,size(z,1));
+cLimLow = min(z(:));
+cLimHigh = max(z(:));
+
+kmlTargetDir = [<span class="string">'..'</span>,filesep,<span class="string">'kml</span>',filesep];
+kmlFileName = <span class="string">'demo_ge_surf.kml'</span>;
+
+output = ge_surf(x,y,z,<span class="keyword">...</span>
+           <span class="string">'polyAlpha'</span>,<span class="string">'FF'</span>,<span class="keyword">...</span>
+           <span class="string">'lineColor'</span>,<span class="string">'FF808080'</span>,<span class="keyword">...</span>
+           <span class="string">'lineWidth'</span>,0.1,<span class="keyword">...</span>
+             <span class="string">'cLimLow'</span>,cLimLow,<span class="keyword">...</span>
+            <span class="string">'cLimHigh'</span>,cLimHigh,<span class="keyword">...</span>
+           <span class="string">'vertExagg'</span>,5e3,<span class="keyword">...</span>
+         <span class="string">'altRefLevel'</span>,2e4,<span class="keyword">...</span>
+            <span class="string">'extrude'</span>,true,<span class="keyword">...</span>
+         <span class="string">'msgToScreen'</span>,1);
+
+output2 = ge_colorbar(x(end),y(1),z,<span class="keyword">...</span>
+                         <span class="string">'numUnits'</span>,20,<span class="keyword">...</span>
+                          <span class="string">'cLimLow'</span>,cLimLow,<span class="keyword">...</span>
+                         <span class="string">'cLimHigh'</span>,cLimHigh,<span class="keyword">...</span>
+                    <span class="string">'cBarFormatStr'</span>,<span class="string">'%+07.4f'</span>);
+
+ge_output([kmlTargetDir,kmlFileName],<span class="keyword">...</span>
+                    [output2 output],<span class="keyword">...</span>
+                              <span class="string">'name'</span>,kmlFileName);
+
+
+</pre>
+   <p>The above will generate a *.kml file that looks like the image below when opened in the Google Earth viewer.</p>
+   <p><img src="images/ge_surf_peaks_function.png"></p>
+</div>
+<div class="spacer"></div>
+
+
+<div class="footer">
+<hr>
+<a name="_bottom"></a></div>
+</body>
+</html>
