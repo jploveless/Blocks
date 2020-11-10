@@ -45,6 +45,7 @@ Command.mogiFileName                                  = '';
 Command.solutionMethod                                = 'backslash';
 Command.ridgeParam                                    = 0;
 Command.triFullCoup                                   = 'no';
+Command.tvrlambda                                     = 1;
 
 % Read in commands one line at a time
 while 1
@@ -234,6 +235,9 @@ while 1
         
       case('ridge param')
         Command.ridgeParam                            = str2double(value);
+        
+      case('Lambda value for TVR estimator')
+        Command.tvrlambda                             = str2double(value);
 
 
    end   

@@ -1,1 +1,0 @@
-function [ve, vn] = RotPosTS(vx, vy, omega)

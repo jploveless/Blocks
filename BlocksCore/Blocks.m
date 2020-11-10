@@ -13,7 +13,7 @@ if isfield(Command, 'mshpFileName')
    if ~isempty(Command.mshpFileName)
       [Patches, Command]                         = ReadMshp(Command.mshpFileName, Command);
    else
-      Patches                                       = ReadPatches(Command.patchFileNames);
+      Patches                                    = ReadPatches(Command.patchFileNames);
    end
 else
    Patches                                       = ReadPatches(Command.patchFileNames);
@@ -171,12 +171,13 @@ switch Command.solutionMethod
     %     Model.omegaEst = Model.covariance*R'*W*d;
     %     fprintf(1, 'Done.\n');
     
-%    case 'tvr'
-%        fprintf(1, '%s\n', Command.solutionMethod);
-%        fprintf(1, 'Doing the inversion with Total Variation Regularization...\n');
-%        Model.covariance = blockstritvr(R, W, d, Patches);
-%        Model.omegaEst = Model.covariance*R'*W*d;
-%        fprintf(1, 'Done.\n');
+    case 'tvr'
+       fprintf(1, '%s\n', Command.solutionMethod);
+       fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...\n', Command.tvrlambda);
+       [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
+       Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command.tvrlambda);
+       Model.covariance = inv(R'*W*R);
+       fprintf(1, 'Done.\n');
 
     otherwise
         fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);

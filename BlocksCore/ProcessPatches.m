@@ -4,6 +4,7 @@ function [Patches, Command] = ProcessPatches(Patches, Command, Segment)
 
 if ~isempty(Command.patchFileNames)
    Patches                                       = ReadPatches(Command.patchFileNames); % Read triangulated patch files
+   Patches.c(Patches.c(:, 1) < 0, 1)             = Patches.c(Patches.c(:, 1) < 0, 1) + 360; % Wrap to 360 longitudes
    Patches                                       = PatchEndAdjust(Patches, Segment); % Adjust patch end coordinates to agree with segment end points
    [Patches, Command]                            = TogglePatches(Patches, Segment, Command); % Adjust structure so that only the toggled-on patch data are retained
    Patches                                       = PatchCoords(Patches); % Create patch coordinate arrays
