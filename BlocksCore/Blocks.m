@@ -140,23 +140,23 @@ fprintf('done.\n')
 
 switch Command.solutionMethod
     case 'backslash'
-        fprintf(1, '%s\n', Command.solutionMethod);
+%        fprintf(1, '%s\n', Command.solutionMethod);
         fprintf(1, 'Doing the inversion via backslash...');
         Model.covariance = (R'*W*R)\eye(size(R, 2));
         Model.omegaEst = Model.covariance*R'*W*d;
         fprintf(1, 'Done.\n');
 
     case 'fullinverse'
-        fprintf(1, '%s\n', Command.solutionMethod);
+%        fprintf(1, '%s\n', Command.solutionMethod);
         fprintf(1, 'Doing the inversion via full inverse...');
         Model.covariance = inv(R'*W*R);
         Model.omegaEst = Model.covariance*R'*W*d;
         fprintf(1, 'Done.\n');
 
     case 'ridge'
-        fprintf(1, '%s\n', Command.solutionMethod);
+%        fprintf(1, '%s\n', Command.solutionMethod);
         fprintf(1, 'Doing the inversion via ridge regression...\n');
-        fprintf(1, 'ridge regression weighting parameter = %5.3f\n', Command.ridgeParam);
+        fprintf(1, 'Ridge regression weighting parameter = %5.3f\n', Command.ridgeParam);
         Model.covariance = inv(R'*W*R + Command.ridgeParam * eye(size(R,2)));
         Model.omegaEst = Model.covariance*R'*W*d;
         fprintf(1, 'Done.\n');
@@ -172,7 +172,7 @@ switch Command.solutionMethod
     %     fprintf(1, 'Done.\n');
     
     case 'tvr'
-       fprintf(1, '%s\n', Command.solutionMethod);
+%       fprintf(1, '%s\n', Command.solutionMethod);
        fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...\n', Command.tvrlambda);
        [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
        Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command.tvrlambda);
@@ -180,7 +180,7 @@ switch Command.solutionMethod
        fprintf(1, 'Done.\n');
 
     otherwise
-        fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);
+       fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);
 end
 
 
