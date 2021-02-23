@@ -3,6 +3,10 @@ function [wmean,nComSta,G,omegaEst] = AlignVelFieldsQuiet6Param(file1, file2, fu
 S1                         = ReadStation(file1);
 S2                         = ReadStation(file2);
 
+% Remove toggled off stations
+S1                         = structsubset(S1, S1.tog);
+S2                         = structsubset(S2, S2.tog);
+
 % Find colocated station (currently allows for latitude float)
 %fprintf(1, '\nList of collocated stations:\n');
 lon1                       = [];
@@ -47,7 +51,7 @@ for i = 1:nStations
    R                       = [ve_wx ve_wy ve_wz ; vn_wx vn_wy vn_wz ; vu_wx vu_wy vu_wz];
    G(rowIdx:rowIdx+2,colIdx:colIdx+5) = [R eye(3)];
 end
-   
+
 % Delete vertical components, estimate rotation vector and calculate residuals
 G(3:3:end, :)              = [];
 G(:, 6)                    = [];

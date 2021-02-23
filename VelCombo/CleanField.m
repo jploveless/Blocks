@@ -56,16 +56,29 @@ end
 %       samenameIdx = [samenameIdx; sn(:)];
 %    end
 % end
+if numel(sigCutoff) == 1
+   sigCutoff = [0 sigCutoff];
+end
 
 % Find large uncertainties
-eastSigIdx                     = find(S.eastSig>sigCutoff);
+eastSigIdx                     = find(S.eastSig>sigCutoff(2));
 for i = 1:length(eastSigIdx)
    fprintf(togf, '%s 0 Large east uncertainty\n', S.name(eastSigIdx(i), :));
 end
-northSigIdx                    = find(S.northSig>sigCutoff);
+northSigIdx                    = find(S.northSig>sigCutoff(2));
 for i = 1:length(northSigIdx)
    fprintf(togf, '%s 0 Large north uncertainty\n', S.name(northSigIdx(i), :));
 end
+% Find small uncertainties
+eastSigIdx                     = find(S.eastSig<sigCutoff(1));
+for i = 1:length(eastSigIdx)
+   fprintf(togf, '%s 0 Small east uncertainty\n', S.name(eastSigIdx(i), :));
+end
+northSigIdx                    = find(S.northSig<sigCutoff(1));
+for i = 1:length(northSigIdx)
+   fprintf(togf, '%s 0 Small north uncertainty\n', S.name(northSigIdx(i), :));
+end
+
 % Update running list of toggles
 togIdx = unique([togIdx(:); eastSigIdx(:); northSigIdx(:)]);
 
