@@ -11,7 +11,11 @@ Documentation (evolving) can be found on the [**Blocks** wiki](https://github.co
 
 To get started: 
 ---------------
-Run the following commands on the Matlab command prompt:
+__Blocks__ uses [__tridisl__](https://github.com/jploveless/tridisl) as a submodule. To clone __Blocks__, run
+
+    $ git clone --recursive https://github.com/jploveless/Blocks.git
+
+After cloning, run the following commands on the Matlab command prompt:
 
 ```matlab
 blockshome = '~/MATLAB/Blocks'; % Edit path to where you placed the Blocks directory
