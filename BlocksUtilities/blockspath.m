@@ -20,7 +20,7 @@ end
 
 broot = [broot filesep];
 
-bp = strcat(broot, fliplr({'BlocksCore', 'BlocksUtilities', 'BlocksUtilities/googleearth', 'ResultManager', 'SegmentManager', 'VelCombo', 'blocksgmt'}));
+bp = strcat(broot, fliplr({'tridisl', 'BlocksCore', 'BlocksUtilities', 'ResultManager', 'SegmentManager'}));
 for i = 1:numel(bp)
    addpath(bp{i})
 end
