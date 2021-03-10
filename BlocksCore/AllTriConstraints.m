@@ -25,9 +25,9 @@ elOrd                                           = [0; cumsum(p.nEl)];
 coOrd                                           = [0; cumsum(p.nc)];
 
 % make the Laplacian smoothing matrix
-share                                           = SideShare(p.v); % For each element, give indices of N <= 3 elements that share sides
-dists                                           = TriDistCalc(share, p.xc, p.yc, p.zc); % calculate distance between element centroids and neighbors
-partials.smooth                                 = MakeTriSmooth(share, dists);
+index.share                                     = SideShare(p.v); % For each element, give indices of N <= 3 elements that share sides
+dists                                           = TriDistCalc(index.share, p.xc, p.yc, p.zc); % calculate distance between element centroids and neighbors
+partials.smooth                                 = MakeTriSmooth(index.share, dists);
 % partials.smooth                                 = MakeTriSmoothAlt(share);
 index.triSmoothkeep                             = index.triColkeep;
 

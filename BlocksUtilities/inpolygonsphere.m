@@ -10,7 +10,7 @@ function [in, saz] = inpolygonsphere(lon, lat, lonv, latv, saz)
 np = numel(lon); % Number of interior points to test
 nv = numel(lonv); % Number of polygon vertices
 
-% Determine a test point, by projecting a vertex a small distance along 
+% Determine a test point, by projecting the northernmost vertex a small distance along 
 % the mean azimuth of the sides originating from it.
 [~, n] = max(latv);
 n1 = n - 1; n1(n1 == 0) = nv;
@@ -19,7 +19,7 @@ if ~exist('saz', 'var')
    saz = sphereazimuth(lonv(n), latv(n), lonv([n1 n2]), latv([n1 n2]));
    saz = mean(mod(saz, 360));
 end
-[tlon, tlat] = gcpoint(lonv(n), latv(n), saz, 1e-3);
+[tlon, tlat] = gcpoint(lonv(n), latv(n), saz, 1e-4);
 
 % Calculate azimuths between test point and vertices, and between test point and interior points
 taz = sphereazimuth(tlon, tlat, [lonv; lon], [latv; lat]);
