@@ -14,6 +14,4 @@ n = size(A,2);
 cvx_begin quiet
 variable x(n)
 minimize( norm(A*x-b,2) + (lambda)*norm(Diff*x,1) )
-subject to
-   x >= 0
 cvx_end

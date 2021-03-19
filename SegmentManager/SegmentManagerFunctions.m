@@ -857,7 +857,7 @@ function SegmentManagerFunctions(option, displayTimingInfo)
                     else
 
                         noIntPt = setdiff(1:numel(Block.orderLon), unique(Block.associateLabel))
-                        for i = 1:length(noip)
+                        for i = 1:length(noIntPt)
                             ni(i) = plot(Block.orderLon{noIntPt(i)}, Block.orderLat{noIntPt(i)}, 'color', 'c', 'linewidth', 3, 'linestyle', '--');
                             setappdata(gcf, 'noIntPt', ni);
                         end
