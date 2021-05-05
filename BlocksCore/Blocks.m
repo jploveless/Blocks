@@ -175,7 +175,7 @@ switch Command.solutionMethod
 %       fprintf(1, '%s\n', Command.solutionMethod);
        fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...\n', Command.tvrlambda);
        [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
-       Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command.tvrlambda);
+       Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command, Index);
        Model.covariance = inv(R'*W*R);
        fprintf(1, 'Done.\n');
 

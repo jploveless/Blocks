@@ -46,7 +46,9 @@ Command.solutionMethod                                = 'backslash';
 Command.ridgeParam                                    = 0;
 Command.triFullCoup                                   = 'no';
 Command.tvrlambda                                     = 1;
+Command.trislipsign                                   = [0 0];
 Command.neigs                                         = 50;
+
 
 % Read in commands one line at a time
 while 1
@@ -239,6 +241,9 @@ while 1
         
       case('lambda value for tvr estimator')
         Command.tvrlambda                             = str2double(value);
+      
+      case('constrain sign of triangular slip (tvr only)')  
+        Command.trislipsign                           = str2num(value);
 
 
    end   
