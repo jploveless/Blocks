@@ -7,7 +7,6 @@ function x = blockstvrtrislip(G, D, W, Diff, Command, Index)
 %   is subjected to TVR, while no such regularization is applied to 
 %   block motions. 
 
-
 A = sparse((W^(1/2))*G); 
 b = sparse((W^(1/2))*D);
 

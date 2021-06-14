@@ -30,3 +30,4 @@ difft = MakeDiffMatrix_mesh2d(Patches);
 % Place into larger penalty array augmented with zeros
 Difft = zeros(size(difft, 1), size(R, 2));
 Difft(:, Index.cols{5, 2}) = difft; % Essentially replacing smoothing matrix from classic
+

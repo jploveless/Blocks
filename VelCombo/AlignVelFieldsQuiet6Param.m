@@ -1,11 +1,31 @@
-function [wmean,nComSta,G,omegaEst] = AlignVelFieldsQuiet6Param(file1, file2, fuzz, omegaEstAP)
+function [evEst, nvEst, G, omegaEst, wmean, nComSta] = AlignVelFieldsQuiet6Param(S1, S2, fuzz, omegaEstAP)
+% AlignVelFieldsQuiet6Param   Aligns two velocity fields with 6-parameter transformation
+%   [ev, nv] = AlignVelFieldsQuiet6Param(S1, S2) aligns the velocity fields given by the structures
+%   S1 and S2, as read in by ReadStation.m. Stations collocated in both fields are aligned using
+%   a 6-parameter transformation, and the velocity component adjustments needed to align S2 into
+%   S1's reference frame are returned as ev, nv. S1 and S2 can alternatively be given as file names
+%   to .sta.data files. 
+%
+%   [ev, nv] = AlignVelFieldsQuiet6Param(S1, S2, fuzz) specifies a tolerance parameter, in decimal
+%   degrees, used for finding collocated stations. The default magnitude of 0.001 degrees. 
+%
 
-S1                         = ReadStation(file1);
-S2                         = ReadStation(file2);
+% If files were specified instead of structures...
+if ischar(S1)
+   S1                      = ReadStation(S1);
+end
+if ischar(S2)   
+   S2                      = ReadStation(S2);
+end
 
 % Remove toggled off stations
 S1                         = structsubset(S1, S1.tog);
 S2                         = structsubset(S2, S2.tog);
+
+% If tolerance was not specified
+if ~exist('fuzz', 'var')
+   fuzz = 0.001;
+end
 
 % Find colocated station (currently allows for latitude float)
 %fprintf(1, '\nList of collocated stations:\n');
@@ -104,3 +124,6 @@ end
 
 G(3:3:end, :)              = [];
 G(:, 6)                    = [];
+dEst                       = G*omegaEst;
+nvEst                      = dEst(2:2:end);
+evEst                      = dEst(1:2:end);
