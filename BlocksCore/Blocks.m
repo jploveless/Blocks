@@ -122,7 +122,7 @@ Partials.mogi                                    = GetMogiPartials(Mogi, Data);
 [Partials.mogi, Partials.smogi]                  = SarPartials(Partials.mogi, Sar);
 
 % Assemble Jacobian
-fprintf('\n  Assembling design matrix, data vector, and weighting matrix...')
+fprintf('\nAssembling design matrix, data vector, and weighting matrix...')
 if startsWith(Command.triFullCoup, 'no')
    [R, d, W, Partials, Index]                    = AssembleMatrices(Partials, Data, Sigma, Index);
 else
@@ -144,22 +144,22 @@ switch Command.solutionMethod
         fprintf(1, 'Doing the inversion via backslash...');
         Model.covariance = (R'*W*R)\eye(size(R, 2));
         Model.omegaEst = Model.covariance*R'*W*d;
-        fprintf(1, 'Done.\n');
+        fprintf(1, 'done.\n');
 
     case 'fullinverse'
 %        fprintf(1, '%s\n', Command.solutionMethod);
         fprintf(1, 'Doing the inversion via full inverse...');
         Model.covariance = inv(R'*W*R);
         Model.omegaEst = Model.covariance*R'*W*d;
-        fprintf(1, 'Done.\n');
+        fprintf(1, 'done.\n');
 
     case 'ridge'
 %        fprintf(1, '%s\n', Command.solutionMethod);
-        fprintf(1, 'Doing the inversion via ridge regression...\n');
-        fprintf(1, 'Ridge regression weighting parameter = %5.3f\n', Command.ridgeParam);
+        fprintf(1, 'Doing the inversion via ridge regression...');
+        fprintf(1, 'Ridge regression weighting parameter = %5.3f...', Command.ridgeParam);
         Model.covariance = inv(R'*W*R + Command.ridgeParam * eye(size(R,2)));
         Model.omegaEst = Model.covariance*R'*W*d;
-        fprintf(1, 'Done.\n');
+        fprintf(1, 'done.\n');
 
     % case 'svd'
     %     Command.svdKeep = 400;
@@ -173,11 +173,11 @@ switch Command.solutionMethod
     
     case 'tvr'
 %       fprintf(1, '%s\n', Command.solutionMethod);
-       fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...\n', Command.tvrlambda);
+       fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...', Command.tvrlambda);
        [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
        Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command, Index);
        Model.covariance = inv(R'*W*R);
-       fprintf(1, 'Done.\n');
+       fprintf(1, 'done.\n');
 
     otherwise
        fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);
@@ -240,7 +240,7 @@ fprintf('done.\n')
 fprintf('Writing output...')
 % Write output
 runName = WriteOutput(Segment, Patches, Station, Sar, Block, Command, Model, Mogi);
-fprintf('done.  All files saved to .%s%s.\n', filesep, runName)
+fprintf('done. All files saved to .%s%s.\n', filesep, runName)
 %save 'new.mat'
 
 if strcmp(Command.dumpall, 'yes')

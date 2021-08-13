@@ -1,4 +1,4 @@
-function [Patches, Command] = ProcessPatches(Patches, Command, Segment)
+function [Patches, Command, Index] = ProcessPatches(Patches, Command, Segment)
 % ProcessPatches   Carries out preliminary patches processing
 
 
@@ -12,5 +12,10 @@ if ~isempty(Command.patchFileNames)
       Command.triSmooth                          = repmat(Command.triSmooth, 1, numel(Patches.nEl));
    elseif numel(Command.triSmooth) ~= numel(Patches.nEl)
       error('BLOCKS:SmoothNEqPatches', 'Smoothing magnitude must be a constant or array equal in size to the number of patches.');
-   end   
+   end
+   % Beginning and ending element indices of each patch
+   Index.pends                                   = cumsum(Patches.nEl(:));   
+   Index.pbegs                                   = [1; Index.pends(1:end-1)+1];
+   Index.pends2                                  = cumsum(2*Patches.nEl(:));
+   Index.pbegs2                                  = [1; Index.pends(1:end-1)+1];
 end

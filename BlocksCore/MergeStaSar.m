@@ -1,4 +1,4 @@
-function [Data, Sigma, Index] = MergeStaSar(Station, Sar)
+function [Data, Sigma, Index] = MergeStaSar(Station, Sar, Index)
 % MergeStaSar  Merge GPS station and SAR velocities and uncertainties.
 
 % Velocities and uncertainties

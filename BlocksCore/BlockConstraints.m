@@ -1,6 +1,6 @@
 function [blockCon, Index, Data, Sigma] = BlockConstraints(Block, Index, Data, Sigma, Command)
 
-fprintf('   Applying a priori block motion constraints...')
+fprintf('  Applying a priori block motion constraints...')
 blockCon                                         = GetBlockConstraintPartials(Block);
 Index.blockCon                                   = find(Block.aprioriTog);
 Data.nBlockCon                                   = 3*length(Index.blockCon);

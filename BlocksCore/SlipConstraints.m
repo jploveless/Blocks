@@ -1,16 +1,18 @@
 function [slipCon, Index, Data, Sigma] = SlipConstraints(Segment, Block, Index, Data, Sigma, Command);
 
-fprintf('   Applying a priori slip constraints...')
+fprintf('  Applying a priori slip constraints...')
 % Build a priori slip rate constraints
-for i = 1:numel(Segment.lon1)
-   if Segment.ssRateTog(i)==1
-      fprintf(1, '\n      Strike-slip constraint   : rate=%6.2f, sigma=%6.2f %s', Segment.ssRate(i), Segment.ssRateSig(i), Segment.name(i,:));
-   end
-   if Segment.dsRateTog(i)==1
-      fprintf(1, '\n      Dip-slip constraint      : rate=%6.2f, sigma=%6.2f %s', Segment.dsRate(i), Segment.dsRateSig(i), Segment.name(i,:));
-   end
-   if Segment.tsRateTog(i)==1
-      fprintf(1, '\n      Tensile-slip constraint  : rate=%6.2f, sigma=%6.2f %s', Segment.tsRate(i), Segment.tsRateSig(i), Segment.name(i,:));
+if Command.printslipcons
+   for i = 1:numel(Segment.lon1)
+      if Segment.ssRateTog(i)==1
+         fprintf(1, '\n      Strike-slip constraint   : rate=%6.2f, sigma=%6.2f %s', Segment.ssRate(i), Segment.ssRateSig(i), Segment.name(i,:));
+      end
+      if Segment.dsRateTog(i)==1
+         fprintf(1, '\n      Dip-slip constraint      : rate=%6.2f, sigma=%6.2f %s', Segment.dsRate(i), Segment.dsRateSig(i), Segment.name(i,:));
+      end
+      if Segment.tsRateTog(i)==1
+         fprintf(1, '\n      Tensile-slip constraint  : rate=%6.2f, sigma=%6.2f %s', Segment.tsRate(i), Segment.tsRateSig(i), Segment.name(i,:));
+      end
    end
 end
 slipCon                                          = GetSlipPartials(Segment, Block);

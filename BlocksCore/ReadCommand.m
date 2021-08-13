@@ -48,6 +48,7 @@ Command.triFullCoup                                   = 'no';
 Command.tvrlambda                                     = 1;
 Command.trislipsign                                   = [0 0];
 Command.neigs                                         = 50;
+Command.printslipcons                                 = false;
 
 
 % Read in commands one line at a time
@@ -109,6 +110,9 @@ while 1
          
       case('order of estimated sar ramp')
          Command.sarRamp                              = str2double(value);
+
+      case('print slip constraints to screen')
+         Command.printslipcons                        = logical(str2double(value));
 
       case('slip constraint weight')
          Command.slipConWgt                           = str2double(value);
