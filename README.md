@@ -15,7 +15,9 @@ __Blocks__ uses [__tridisl__](https://github.com/jploveless/tridisl) as a submod
 
     $ git clone --recursive https://github.com/jploveless/Blocks.git
 
-After cloning, run the following commands on the Matlab command prompt:
+If you are instead downloading ``.zip`` files, download both __Blocks__ and [__tridisl__](https://github.com/jploveless/tridisl), unzip, move the __tridisl__ folder to the __Blocks__ directory, and rename it from ``tridisl-master`` to ``tridisl``.
+
+After you have the directories, run the following commands on the Matlab command prompt:
 
 ```matlab
 blockshome = '~/MATLAB/Blocks'; % Edit path to where you placed the Blocks directory
