@@ -124,9 +124,9 @@ p.py3                         = diag(my(nsta+2*ntri + (1:ntri), :));
 
 s.tpx                         = s.tpx.*repmat(R - abs(s.dep), 1, ntri);
 s.tpy                         = s.tpy.*repmat(R - abs(s.dep), 1, ntri);
-p.px1                         = p.px1.*(R - abs(p.z1));
-p.py1                         = p.py1.*(R - abs(p.z1));
-p.px2                         = p.px2.*(R - abs(p.z2));
-p.py2                         = p.py2.*(R - abs(p.z2));
-p.px3                         = p.px3.*(R - abs(p.z3));
-p.py3                         = p.py3.*(R - abs(p.z3)); 
+p.px1                         = p.px1.*(R);
+p.py1                         = p.py1.*(R);
+p.px2                         = p.px2.*(R);
+p.py2                         = p.py2.*(R);
+p.px3                         = p.px3.*(R);
+p.py3                         = p.py3.*(R); 

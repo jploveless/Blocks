@@ -47,7 +47,7 @@ if nPatches > 0
       if sum(op(:, 1)) > 0
          % Calculate elastic displacement for strike slip component
          [ux, uy, uz]                          = local_tri_calc(Patches.lon1(iPatches), Patches.lat1(iPatches), Patches.z1(iPatches), Patches.lon2(iPatches), Patches.lat2(iPatches), Patches.z2(iPatches), Patches.lon3(iPatches), Patches.lat3(iPatches), Patches.z3(iPatches), Station.lon(op(:, 1)), Station.lat(op(:, 1)), -1, 0, 0, pr);
-	      v1u{iPatches}                         = reshape([ux uy uz]', 3*sum(op(:, 1)), 1);
+         v1u{iPatches}                         = reshape([ux uy uz]', 3*sum(op(:, 1)), 1);
 	      [ux, uy, uz]                          = local_tri_calc(Patches.lon1(iPatches), Patches.lat1(iPatches), Patches.z1(iPatches), Patches.lon2(iPatches), Patches.lat2(iPatches), Patches.z2(iPatches), Patches.lon3(iPatches), Patches.lat3(iPatches), Patches.z3(iPatches), Station.lon(op(:, 1)), Station.lat(op(:, 1)), 0, -1, 0, pr);
 	      v2u{iPatches}                         = reshape([ux uy uz]', 3*sum(op(:, 1)), 1);
 	      [ux, uy, uz]                          = local_tri_calc(Patches.lon1(iPatches), Patches.lat1(iPatches), Patches.z1(iPatches), Patches.lon2(iPatches), Patches.lat2(iPatches), Patches.z2(iPatches), Patches.lon3(iPatches), Patches.lat3(iPatches), Patches.z3(iPatches), Station.lon(op(:, 1)), Station.lat(op(:, 1)), 0, 0, -1, pr);
