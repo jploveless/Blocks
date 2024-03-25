@@ -47,6 +47,8 @@ Partials                                         = CheckExistingKernels(Command,
 [Partials.blockCon, Index, Data, Sigma]          = BlockConstraints(Block, Index, Data, Sigma, Command);
 % ...and fault slip rates
 [Partials.slipCon, Index, Data, Sigma]           = SlipConstraints(Segment, Block, Index, Data, Sigma, Command);
+% ...and fault rake
+[Partials.rakeCon, Index, Data, Sigma]           = RakeConstraints(Segment, Block, Index, Data, Sigma, Command);
 
 % Get partial derivatives relating displacement to slip on rectangular dislocations
 if isempty(Partials.elastic)
@@ -184,7 +186,6 @@ switch Command.solutionMethod
 end
 
 
-
 % Extract different parts of the state vector
 fprintf('Calculating model results...')
 Model                                            = ExtractStateVector(Model, Index);
@@ -238,6 +239,8 @@ Model.SarResid                                   = Sar.data - Model.Sar;
 fprintf('done.\n')
 
 fprintf('Writing output...')
+
+%keyboard
 % Write output
 runName = WriteOutput(Segment, Patches, Station, Sar, Block, Command, Model, Mogi);
 fprintf('done. All files saved to .%s%s.\n', filesep, runName)

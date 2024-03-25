@@ -75,10 +75,10 @@ infoOther                                                     = str2num_fast(con
 [Segment.patchSlipFile, Segment.patchSlipTog, Segment.other6] = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
 infoOther                                                = str2num_fast(contentsSegmentFile(12 : nFieldLines :end), 3);
-[Segment.other7, Segment.other8, Segment.other9]         = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
+[Segment.rake, Segment.rakeSig, Segment.rakeTog]         = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
 infoOther                                                = str2num_fast(contentsSegmentFile(13 : nFieldLines :end), 3);
-[Segment.other10, Segment.other11, Segment.other12]      = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
+[Segment.other7, Segment.other8, Segment.other9]      = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
 % Take a look at how many stations we have
 nSegments = numel(Segment.lon1);

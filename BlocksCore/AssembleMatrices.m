@@ -38,6 +38,7 @@ rbcons                                           = Data.nBlockCon; % Block const
 rscons                                           = Data.nSlipCon; % Slip constraint rows
 rtriw                                            = length(Index.triSmoothkeep); % Triangular smoothing rows
 rtric                                            = length(Index.triConkeep); % Triangular edge constraint rows
+rrcons                                           = Data.nRakeCon;
 
 cblock                                           = Index.szrot(2); % Block/slip columns
 ctri                                             = length(Index.triColkeep); % Triangle columns
@@ -49,7 +50,8 @@ cramp                                            = Index.szramp(2); % SAR ramp c
  
 
 % Determine indices
-rnum                                             = [rsta rsar rbcons rscons rtriw rtric];
+rnum                                             = [rsta rsar rbcons rscons rtriw rtric rrcons];
+%rnum                                             = [rsta rsar rbcons rscons rtriw rtric];
 cnum                                             = [cblock ctri cstrain cmogi cramp];
 ridx                                             = cumsum([0 rnum]);
 cidx                                             = cumsum([0 cnum]);
@@ -79,6 +81,7 @@ R(rows{4, 1}, cols{4, 1})                        = Partials.slipCon;
 R(rows{5, 2}, cols{5, 2})                        = Partials.smooth(Index.triSmoothkeep, Index.triColkeep);
 R(rows{6, 1}, cols{6, 1})                        = Partials.triBlockCon(Index.triConkeep, :);
 R(rows{6, 2}, cols{6, 2})                        = Partials.triSlipCon(Index.triConkeep, Index.triColkeep);
+R(rows{7, 1}, cols{7, 1})                        = Partials.rakeCon;
 
 % Allocate space for data and weight vectors
 d                                                = zeros(ridx(end), 1);
@@ -102,6 +105,8 @@ d(rows{5, 1})                                    = Data.smooth(Index.triSmoothke
 w(rows{5, 1})                                    = Sigma.smooth(Index.triSmoothkeep);
 d(rows{6, 1})                                    = Data.triSlipCon(Index.triConkeep);
 w(rows{6, 1})                                    = Sigma.triSlipCon(Index.triConkeep);
+d(rows{7, 1})                                    = Data.rakeCon;
+w(rows{7, 1})                                    = Sigma.rakeConWgt./Sigma.rakeCon.^2;
 W                                                = diag(w); % convert weights into a diagonal matrix
 
 % Place row and column indices into Index structure

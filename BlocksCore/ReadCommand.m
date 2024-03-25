@@ -137,6 +137,9 @@ while 1
 
       case('block constraint weight steps')
          Command.blockConWgtSteps                     = str2double(value);
+         
+      case('rake constraint weight')
+         Command.rakeConWgt                           = str2double(value);
 
       case('locking depth toggle 2')
          Command.ldTog2                               = str2double(value);
