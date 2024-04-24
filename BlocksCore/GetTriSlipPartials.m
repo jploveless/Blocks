@@ -22,11 +22,10 @@ tz                                                 = Patches.tz;
 tz(Patches.tz == 2)                                = 3;
 tz(Patches.tz == 3)                                = 2;
 
-% Strike correction: Elements that dip > 90 
-nscorr                                             = false(nPatches, 1);
-ewcorr                                             = nscorr;
-nscorr(Patches.strike > 0 & Patches.strike < 180)  = true;
-ewcorr(Patches.strike < 270 & Patches.strike > 90) = true;
+% Strike correction: change the element RHR convention to agree with segment convention
+% Segment convention: strike is azimuth from western to eastern endpoint (i.e. 0-180º)
+Patches.strikeseg                                  = Patches.strike;
+Patches.strikeseg(Patches.strike > 180)            = Patches.strikeseg(Patches.strike > 180) - 180;
 
 for iPatch = 1:nPatches
    % Find which mesh this TDE belongs to
@@ -53,12 +52,12 @@ for iPatch = 1:nPatches
   
    % Use strike and dip to resolve slip onto plane
    R                                               = [ve_wx vn_wx vu_wx; ve_wy vn_wy vu_wy; ve_wz vn_wz vu_wz]';
-   strike                                          = Patches.strike(iPatch);
+   strike                                          = Patches.strikeseg(iPatch);
    rot                                             = [sind(strike), cosd(strike), 0; cosd(strike), -sind(strike), 0; 0, 0, 1];
    R                                               = rot*R;
-   R(1, :)                                         = R(1, :); % Consistent with negative dextral slip
-   R(2, :)                                         = -R(2, :)./abs(cosd(Patches.dip(iPatch))); % Correct horizontal motion by dip
+   R(1, :)                                         = -R(1, :); % Consistent with negative dextral slip
    R(3, :)                                         = R(2, :); % Tensile slip 
+   R(2, :)                                         = R(2, :)./abs(cosd(Patches.dip(iPatch))); % Correct horizontal motion by dip
    R(tz(iPatch), :)                                = [0 0 0]; % Set one perpendicular component to zero
 
    % Compare element azimuth to segment azimuth. If they are on different sides of E-W, we need to flip labels
@@ -66,8 +65,14 @@ for iPatch = 1:nPatches
    Patches.nssegtest(iPatch)                       = rhrstrike(Patches.nearSeg(iPatch)) < 180 & rhrstrike(Patches.nearSeg(iPatch)) > 0;
    Patches.ewsegtest(iPatch)                       = rhrstrike(Patches.nearSeg(iPatch)) < 270 & rhrstrike(Patches.nearSeg(iPatch)) > 90;
    Rcorr                                           = 1;
-   Rcorr(Patches.ewsegtest(iPatch))                = -1;
-
+%   Rcorr(Patches.ewsegtest(iPatch))                = -1;
+%   Rcorr(Patches.nssegtest(iPatch))                = -1;
+  
+%   Rcorr(abs(Patches.strikeseg(iPatch) - Seg.strike(Patches.nearSeg(iPatch))) > 90) = -1;
+   
+   % Same correction as is made for segments (lines 26-29 of GetSlipPartials.m)
+   Rcorr(Patches.strikeseg(iPatch) < 90) = -1;
+ 
    % Place into appropriate columns
    G(rowIdx:rowIdx+2,colIdxE:colIdxE+2)            = Rcorr*R;
    G(rowIdx:rowIdx+2,colIdxW:colIdxW+2)            = Rcorr*-R;
