@@ -240,7 +240,6 @@ fprintf('done.\n')
 
 fprintf('Writing output...')
 
-%keyboard
 % Write output
 runName = WriteOutput(Segment, Patches, Station, Sar, Block, Command, Model, Mogi);
 fprintf('done. All files saved to .%s%s.\n', filesep, runName)

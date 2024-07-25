@@ -133,7 +133,7 @@ for i    = 1:numel(p.nEl);
 %      downdip                                  = elOrd(i) + find(sum(ismember(p.v(elRange, :), maxZ), 2) == 2);
 
      edgeels                                  = edgeelements(p.c, p.v(elRange, :));
-     latedge                                  = elOrd(i) + find(edgeels.s1+edgeels.s2);
+     latedge                                  = elOrd(i) + find(edgeels.side);
 %      latedge                                  = setdiff(edgeEls, [updip(:); downdip(:)]);
       latedges                                 = [latedges; latedge];
       latedgesc                                = [latedgesc; c.triEdge(3*i-0)*ones(size(latedge))];

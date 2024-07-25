@@ -67,16 +67,15 @@ function SegmentCheckerForGui(S)
             %disp('same coords - longitude - same ordering')
             %set(h(i),   'marker', '>', 'color', [0.5 0 0.5]);
             %set(h(lom), 'marker', '>', 'color', [0.5 0 0.5]);
-            plot([S.lon1([i;lom]);S.lon2([i;lom])], [S.lat1([i;lom]);S.lat2([i;lom])], 'marker','>', 'color',[0.5 0 0.5], 'linewidth',2, 'tag','CheckedSegment');
+            plot([S.lon1([i,lom]);S.lon2([i,lom])], [S.lat1([i,lom]);S.lat2([i,lom])], 'marker','>', 'color',[0.5 0 0.5], 'linewidth',2, 'tag','CheckedSegment');
             anyFound = true;
         end
-        %if i == 674; keyboard; end
 
         if ~isempty(lam)
             %disp('same coords - latitude - same ordering')
             %set(h(i),   'marker', '^', 'color', [0.5 0 0.5]);
             %set(h(lam), 'marker', '^', 'color', [0.5 0 0.5]);
-            plot([S.lon1([i;lam]);S.lon2([i;lam])], [S.lat1([i;lam]);S.lat2([i;lam])], 'marker','>', 'color',[0.5 0 0.5], 'linewidth',2, 'tag','CheckedSegment');
+            plot([S.lon1([i,lam]);S.lon2([i,lam])], [S.lat1([i,lam]);S.lat2([i,lam])], 'marker','>', 'color',[0.5 0 0.5], 'linewidth',2, 'tag','CheckedSegment');
             anyFound = true;
         end
     end
@@ -104,7 +103,7 @@ function SegmentCheckerForGui(S)
             %disp('same coords - longitude - opposite ordering')
             %set(h(i),   'marker', '<', 'color', 'c');
             %set(h(lom), 'marker', '<', 'color', 'c');
-            plot([S.lon1([i;lom]);S.lon2([i;lom])], [S.lat1([i;lom]);S.lat2([i;lom])], 'marker','v', 'color','c', 'linewidth',2, 'tag','CheckedSegment');
+            plot([S.lon1([i,lom]);S.lon2([i,lom])], [S.lat1([i,lom]);S.lat2([i,lom])], 'marker','v', 'color','c', 'linewidth',2, 'tag','CheckedSegment');
             anyFound = true;
         end
 
@@ -114,7 +113,7 @@ function SegmentCheckerForGui(S)
             %disp('same coords - latitude - opposite ordering')
             %set(h(i),   'marker', 'v', 'color', 'c');
             %set(h(lam), 'marker', 'v', 'color', 'c');
-            plot([S.lon1([i;lam]);S.lon2([i;lam])], [S.lat1([i;lam]);S.lat2([i;lam])], 'marker','v', 'color','c', 'linewidth',2, 'tag','CheckedSegment');
+            plot([S.lon1([i,lam]);S.lon2([i,lam])], [S.lat1([i,lam]);S.lat2([i,lam])], 'marker','v', 'color','c', 'linewidth',2, 'tag','CheckedSegment');
             anyFound = true;
         end
     end
