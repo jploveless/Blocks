@@ -1040,9 +1040,9 @@ function SegmentManagerFunctions(option, displayTimingInfo)
         case 'Seg.dispMeridian'   % Change longitude labeling
             try value = get(Seg.dispMeridian, 'Value'); catch, return; end
             if value == 1
-                set(gca, 'XTickLabel', deblank(strjust(num2str(zero22pi(transpose(get(gca, 'XTick')))), 'center')));
+                set(gca, 'XTickLabel', deblank(strjust(num2str(wrapTo360(transpose(get(gca, 'XTick')))), 'center')));
             elseif value == 2
-                set(gca, 'XTickLabel', deblank(strjust(num2str(npi2pi(transpose(get(gca, 'XTick')))), 'center')));
+                set(gca, 'XTickLabel', deblank(strjust(num2str(wrapTo180(transpose(get(gca, 'XTick')))), 'center')));
             else
                 return;
             end
@@ -1413,7 +1413,7 @@ function PlotLine(filename)
     blank = regexp(str, pat, 'start');
     in(blank, 1:7) = repmat('NaN NaN', length(blank), 1);
     in = str2num(in);
-    plot(zero22pi(in(:, 1)), in(:, 2), '-', 'LineWidth', 0.5, 'Color', 'm', 'Tag', 'lineAll');
+    plot(wrapTo360(in(:, 1)), in(:, 2), '-', 'LineWidth', 0.5, 'Color', 'm', 'Tag', 'lineAll');
 
 function PlotXy(filename)
     % PlotXy
@@ -1423,7 +1423,7 @@ function PlotXy(filename)
         % Try a conversion to numeric
         vals = str2num(data);
         if ~isempty(vals)
-            plot(zero22pi(vals(1)), vals(2), '.k', 'Tag', 'xyAll');
+            plot(wrapTo360(vals(1)), vals(2), '.k', 'Tag', 'xyAll');
         end
 
         % Get the next line

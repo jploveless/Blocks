@@ -13,7 +13,7 @@ function Block = MoveBlock(Block)
     hMarker = plot(0, 0, 'og', 'Tag', 'HighlightIntersection');  % draw initial circle marker
     while ~getappdata(gcf, 'doneClick')
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
 
         % Find the closest intersection
         d = (lon - x).^2 + (lat - y).^2;
@@ -33,7 +33,7 @@ function Block = MoveBlock(Block)
     while ~done
         done = getappdata(gcf, 'doneClick');
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
         set(hMarker, 'xData',x, 'yData',y);
         drawnow;
     end

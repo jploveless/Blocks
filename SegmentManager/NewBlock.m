@@ -10,7 +10,7 @@ function [Block, newBlockName] = NewBlock(Block)
     setappdata(gcf, 'doneClick', false);
     while ~getappdata(gcf, 'doneClick')
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
         drawnow; pause(0.02);
     end
     set(gcf, 'WindowButtonDownFcn', '');
