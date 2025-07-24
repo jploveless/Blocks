@@ -68,17 +68,17 @@ infoBurialDepth                                                      = str2num(c
 infoResolution                                                       = str2num(char(contentsSegmentFile(9 : nFieldLines :end)));
 [Segment.res, Segment.resOver, Segment.resOther]                     = deal(infoResolution(:, 1), infoResolution(:, 2), infoResolution(:, 3));
 
-infoOther                                                            = str2num(char(contentsSegmentFile(10 : nFieldLines :end)));
-[Segment.other1, Segment.other2, Segment.other3]                     = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
+infoOther                                                            = str2num_fast(contentsSegmentFile(10 : nFieldLines :end), 3);
+[Segment.patchFile, Segment.patchTog, Segment.other3]                = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
-infoOther                                                            = str2num(char(contentsSegmentFile(11 : nFieldLines :end)));
-[Segment.other4, Segment.other5, Segment.other6]                     = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
+infoOther                                                            = str2num_fast(contentsSegmentFile(11 : nFieldLines :end), 3);
+[Segment.patchSlipFile, Segment.patchSlipTog, Segment.other6]        = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
-infoOther                                                            = str2num(char(contentsSegmentFile(12 : nFieldLines :end)));
+infoOther                                                            = str2num_fast(contentsSegmentFile(12 : nFieldLines :end), 3);
+[Segment.rake, Segment.rakeSig, Segment.rakeTog]                     = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
+
+infoOther                                                            = str2num_fast(contentsSegmentFile(13 : nFieldLines :end), 3);
 [Segment.other7, Segment.other8, Segment.other9]                     = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
-
-infoOther                                                            = str2num(char(contentsSegmentFile(13 : nFieldLines :end)));
-[Segment.other10, Segment.other11, Segment.other12]                  = deal(infoOther(:, 1), infoOther(:, 2), infoOther(:, 3));
 
 %%  Take a look at how many segments we have
 nSegments                                                            = length(Segment.lon1);

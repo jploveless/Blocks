@@ -1,0 +1,11 @@
+Orientation: 
+Sinistral	0°
+Reverse		90°
+Dextral 	180°
+Normal 		270°
+
+To apply segment constraints, use SegmentManager or modify the 12th line (of 13) for segments within segment files. Add the following line to the Command file to specify the constraint weight: 'Rake constraint weight: 1e+10' 
+	Examples of rake constrained segments are in './inputs/rakeConExample.segment'
+
+To apply triangular element constraints, use a text document indicating the element index followed by the rake constraint. You must also specify in the Command file 'Type of a priori slip constraint (1 = slip values, 2 = coupling fraction, 3 = rake): 3' 
+	Example file: './inputs/triRakConExample.txt'

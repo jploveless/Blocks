@@ -207,12 +207,12 @@ function SegmentManagerFunctions(option, displayTimingInfo)
                     case 27; Segment.patchSlipFile(segIdx) = value;
                     case 28; Segment.patchSlipTog(segIdx)  = value;
                     case 29; Segment.other6(segIdx)    = value;
-                    case 30; Segment.other7(segIdx)    = value;
-                    case 31; Segment.other8(segIdx)    = value;
-                    case 32; Segment.other9(segIdx)    = value;
-                    case 33; Segment.other10(segIdx)   = value;
-                    case 34; Segment.other11(segIdx)   = value;
-                    case 35; Segment.other12(segIdx)   = value;
+                    case 30; Segment.rake(segIdx)      = value;
+                    case 31; Segment.rakeSig(segIdx)   = value;
+                    case 32; Segment.rakeTog(segIdx)   = value;
+                    case 33; Segment.other7(segIdx)    = value;
+                    case 34; Segment.other8(segIdx)    = value;
+                    case 35; Segment.other9(segIdx)    = value;
                 end
                 setappdata(gcf, 'Segment', Segment);
                 SegmentManagerFunctions('Seg.modSegList')
@@ -256,12 +256,12 @@ function SegmentManagerFunctions(option, displayTimingInfo)
                     case 27; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.patchSlipFile(segIdx))]);
                     case 28; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.patchSlipTog(segIdx))]);
                     case 29; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other6(segIdx))]);
-                    case 30; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other7(segIdx))]);
-                    case 31; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other8(segIdx))]);
-                    case 32; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other9(segIdx))]);
-                    case 33; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other10(segIdx))]);
-                    case 34; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other11(segIdx))]);
-                    case 35; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other12(segIdx))]);
+                    case 30; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.rake(segIdx))]);
+                    case 31; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.rakeSig(segIdx))]);
+                    case 32; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.rakeTog(segIdx))]);
+                    case 33; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other7(segIdx))]);
+                    case 34; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other8(segIdx))]);
+                    case 35; set(Seg.modPropEdit, 'string', ['   ' num2str(Segment.other9(segIdx))]);
                 end
             else
                 set(Seg.modPropEdit, 'string', ' ');
@@ -500,17 +500,17 @@ function SegmentManagerFunctions(option, displayTimingInfo)
                     case 33
                         ShowPropertyLabels(num2str(Segment.other6)); BigTitle('Other 3');
                     case 34
-                        ShowPropertyLabels(num2str(Segment.other7)); BigTitle('Other 4');
+                        ShowPropertyLabels(num2str(Segment.rake)); BigTitle('Rake');
                     case 35
-                        ShowPropertyLabels(num2str(Segment.other8)); BigTitle('Other 5');
+                        ShowPropertyLabels(num2str(Segment.rakeSig)); BigTitle('Rake sigma');
                     case 36
-                        ShowPropertyLabels(num2str(Segment.other9)); BigTitle('Other 6');
+                        ShowPropertyLabels(num2str(Segment.rakeTog)); BigTitle('Rake toggle');
                     case 37
-                        ShowPropertyLabels(num2str(Segment.other10)); BigTitle('Other 7');
+                        ShowPropertyLabels(num2str(Segment.other7)); BigTitle('Other 4');
                     case 38
-                        ShowPropertyLabels(num2str(Segment.other11)); BigTitle('Other 8');
+                        ShowPropertyLabels(num2str(Segment.other8)); BigTitle('Other 5');
                     case 39
-                        ShowPropertyLabels(num2str(Segment.other12)); BigTitle('Other 9');
+                        ShowPropertyLabels(num2str(Segment.other9)); BigTitle('Other 6');
                 end
             end
 

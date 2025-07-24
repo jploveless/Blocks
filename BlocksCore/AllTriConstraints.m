@@ -150,6 +150,10 @@ elseif c.triSlipConstraintType == 2 % Coupling fraction is specified
    triapcons                                   = ReadTriSlipFiles(c.slipFileNames, p);
    triapidx                                    = triapcons(:, 1);
    triapmag                                    = triapcons(:, 2);
+elseif c.triSlipConstraintType == 3 % slip rake is specified
+   triapcons                                   = ReadTriSlipFiles(c.slipFileNames, p);
+   triapidx                                    = triapcons(:, 1);
+   triapmag                                    = triapcons(:, 2);
 else
    [triapidx, triapmag]                        = deal([]);
 end
@@ -194,14 +198,31 @@ if c.triSlipConstraintType == 1
    apmag((p.tz(triapidx)-1).*napt+(1:napt)')   = triapmag(:, 2); 
    data.triSlipCon(end-3*napt+1:end)           = stack3(apmag);
 end
+%keyboard
+% Applying slip rake constraints
+ rakeIdx = con == 3;
+if c.triSlipConstraintType == 3
+    rakeTriCon                                 = partials.triSlipCon(end-3*length(triapidx)+1:end,:);
+    rakeTriCon                                 = rakeTriCon(1:3:end,:).*sind(triapmag) + rakeTriCon(2:3:end,:).*cosd(triapmag);
+    partials.triSlipCon(end-3*length(triapidx)+1:end,:) = [];
+    partials.triSlipCon                        = [partials.triSlipCon; rakeTriCon];
+    data.triSlipCon                            = data.triSlipCon(1:end-2*length(triapidx));  
+%%%%%     % need to modify the triblockcon portions too
+end
 % Set up weighting for slip rate constraints
 sig.triSlipCon                                 = c.triConWgt*ones(size(data.triSlipCon));
-index.triConkeep                               = sort([3*idx-2; 3*idx-1; 3*idx]);
+index.triConkeep                               = sort([3*idx(~rakeIdx)-2; 3*idx(~rakeIdx)-1; 3*idx(~rakeIdx)]);
 [~, keep]                                      = ismember(index.triColkeep, index.triConkeep);
 index.triConkeep                               = keep(keep > 0);
+% keyboard
+% Eliminate extra row entries related to slip rake constraints
+if c.triSlipConstraintType == 3
+   index.triConkeep = [index.triConkeep find(rakeIdx,1,'first')*3-2:length(data.triSlipCon)]; 
+    %index.triConkeep = [index.triConkeep length(data.triSlipCon)-(sum(rakeIdx)-1:-1:0)]; 
+end
+
 % Eliminate any NaN a priori slip constraints
 if c.triSlipConstraintType == 1
    [~, apnan]                                  = ismember(index.triConkeep, find(isnan(data.triSlipCon)));
    index.triConkeep                            = index.triConkeep(~apnan);
 end
-

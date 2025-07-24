@@ -5,7 +5,7 @@ function WriteSegment(segfilename, faultname, fault_lon1, fault_lat1, fault_lon2
 			       fault_lres, fault_lres_ov, fault_lres_other, ...
 			       fault_other1, fault_other2, fault_other3, ...
 			       fault_other4, fault_other5, fault_other6, ...
-			       fault_other7, fault_other8, fault_other9, ...
+			       fault_rake, fault_rake_sig, fault_rake_tog, ...
 			       fault_other10, fault_other11, fault_other12)
 % This script writes a *.segment file with the slip rates
 % passed and fault geometry.
@@ -52,9 +52,9 @@ fprintf(filestream, 'ds_rate  ds_sig   ds_tog\n');
 fprintf(filestream, 'ts_rate  ts_sig   ts_tog\n');
 fprintf(filestream, 'bur_dep  bd_sig   bd_tog\n');
 fprintf(filestream, 'fres     fres_ov  fres_other\n');
-fprintf(filestream, 'other1   other2   other3\n');
-fprintf(filestream, 'other4   other5   other6\n');
-fprintf(filestream, 'other7   other8   other9\n');
+fprintf(filestream, 'p_file   p_tog    other3\n'); 
+fprintf(filestream, 'ps_file  ps_tog   other6\n'); 
+fprintf(filestream, 'rake     rake_sig rake_tog\n');
 fprintf(filestream, 'other10  other11  other12\n');
 
 % Loop over blocks and write to file
@@ -70,7 +70,7 @@ for cnt = 1 : numel(fault_lon1)
    fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_lres(cnt), fault_lres_ov(cnt), fault_lres_other(cnt));   
    fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_other1(cnt), fault_other2(cnt), fault_other3(cnt));
    fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_other4(cnt), fault_other5(cnt), fault_other6(cnt));
-   fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_other7(cnt), fault_other8(cnt), fault_other9(cnt));
+   fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_rake(cnt), fault_rake_sig(cnt), fault_rake_tog(cnt));
    fprintf(filestream, '%3.1f   %3.1f  %3.1f\n', fault_other10(cnt), fault_other11(cnt), fault_other12(cnt));
 end
 fclose(filestream);
