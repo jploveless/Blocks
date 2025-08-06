@@ -26,11 +26,12 @@ locking depth override toggle: no
 locking depth override value: 15
 Triangulated patch files: ./HirosePSP2008-new_0-50_LL.msh ./JapanTrench0-40-100_smooth_clipped_c15_LL.mat ./toda&stein_c15_LL.msh
 Patch slip distribution files: 
-Mesh smoothing values: 0.1
+Mesh smoothing values: 500
 Surface azimuth of triangular slips: 
 Enforce patch kinematic consistency: 0
 Constrain edge element slip to equal that of adjacent segment: 0
-Set [up- down-] dip limits to zero slip: 1 1 1 1 1 0 1 1 1
+Constrain slip on [updip downdip lateral] limits: 0 1 0 0 1 0 0 1 1
+Constrained triangular slip weight: 1e6
 Strain calculation method: 1
 Number of Monte Carlo iterations: 1
-dumpall: yes
+dumpall: no

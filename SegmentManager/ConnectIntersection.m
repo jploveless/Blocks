@@ -13,7 +13,7 @@ function [Segment, newSegmentName] = ConnectIntersection(Segment)
     hMarker = plot(0, 0, 'ro', 'Tag', 'HighlightIntersection');  % draw initial circle marker
     while ~getappdata(gcf, 'doneClick')
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
 
         %% Find the closest intersection
         d2 = (lonEnd - x).^2 + (latEnd - y).^2;
@@ -35,7 +35,7 @@ function [Segment, newSegmentName] = ConnectIntersection(Segment)
     setappdata(gcf, 'doneClick', false);
     while ~getappdata(gcf, 'doneClick')
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
 
         %% Find the closest intersection
         d2 = (lonEnd - x).^2 + (latEnd - y).^2;

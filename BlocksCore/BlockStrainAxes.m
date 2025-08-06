@@ -19,8 +19,8 @@ function [e1, e2] = BlockStrainAxes(arg1, fig, c1, c2, varargin)
     end
 
     % get centroid coordinates (stored in Euler coordinate locations of Strain.block)
-    x = Block.eulerLon;
-    y = Block.eulerLat;
+    x = Block.interiorLon;
+    y = Block.interiorLat;
 
     nzind = find(x);
     x = x(nzind);
@@ -39,7 +39,7 @@ function [e1, e2] = BlockStrainAxes(arg1, fig, c1, c2, varargin)
         sqrt(Block.other2(nzind).^2 + 0.25*(Block.other1(nzind) - Block.other3(nzind)).^2);
 
     % set scale for plotting
-    sc = 1e6;
+    sc = 1e9;
 
     % convert direction and magnitude into axis coordinates
     p11 = sc*abs(e1).*cos(theta1);

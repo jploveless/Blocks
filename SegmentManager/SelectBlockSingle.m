@@ -14,7 +14,7 @@ function idx = SelectBlockSingle(Block)
     end
     while ~getappdata(gcf, 'doneClick')
         [x, y] = GetCurrentAxesPosition;
-        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', npi2pi(x), x, y));
+        set(Seg.pszCoords, 'string', sprintf('(%7.3f)  %7.3f  ; %7.3f', wrapTo180(x), x, y));
 
         % Find the closest point
         d2 = (Block.interiorLon - x).^2 + (Block.interiorLat - y).^2;

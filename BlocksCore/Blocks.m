@@ -237,10 +237,9 @@ Model.upResidVel                                 = Station.upVel - Model.upVel;
 Model.SarResid                                   = Sar.data - Model.Sar;
            
 fprintf('done.\n')
-
+keyboard
 fprintf('Writing output...')
 
-%keyboard
 % Write output
 runName = WriteOutput(Segment, Patches, Station, Sar, Block, Command, Model, Mogi);
 fprintf('done. All files saved to .%s%s.\n', filesep, runName)
