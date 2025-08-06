@@ -49,11 +49,9 @@ Segment.patchSlipTog  = [Segment.patchSlipTog  ; 0*ba];
 Segment.other6        = [Segment.other6 ; 0*ba];
 
 Segment.rake          = [Segment.rake ; 0*ba];
-Segment.rakeSig       = [Segment.rakeSig ; 0*ba];  
-Segment.rakeTog       = [Segment.rakeTog   ; 0*ba];
+Segment.rakeSig       = [Segment.rakeSig ; 0*ba];
+Segment.rakeTog       = [Segment.rakeTog ; 0*ba];
 
 Segment.other7        = [Segment.other7 ; 0*ba];
 Segment.other8        = [Segment.other8 ; 0*ba];
 Segment.other9        = [Segment.other9 ; 0*ba];
-
-

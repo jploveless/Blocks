@@ -49,7 +49,7 @@ Command.tvrlambda                                     = 1;
 Command.trislipsign                                   = [0 0];
 Command.neigs                                         = 50;
 Command.printslipcons                                 = false;
-
+Command.rakeConWgt                                    = 1;
 
 % Read in commands one line at a time
 while 1

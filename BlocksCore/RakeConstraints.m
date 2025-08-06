@@ -16,7 +16,7 @@ rake = wrapTo360(rake);
 
 % rotate counterclockwise (only do if rake constraints are applied)
 if sum(rakeToggle)>0
-    rakeCon                                      = rakeCon(1:2:end,:)*sind(rake) + rakeCon(2:2:end,:)*cosd(rake);
+    rakeCon                                      = rakeCon(1:2:end,:).*sind(rake) + rakeCon(2:2:end,:).*cosd(rake);
 end
 % change index to give segment # because we only constrain in one direction
 Index.rakeCon                                    = find(Segment.rakeTog(:)); 
