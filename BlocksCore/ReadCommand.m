@@ -48,6 +48,7 @@ Command.triFullCoup                                   = 'no';
 Command.tvrlambda                                     = 1;
 Command.trislipsign                                   = [0 0];
 Command.neigs                                         = 50;
+Command.tvrBlockParam                                 = 0;
 Command.printslipcons                                 = false;
 Command.rakeConWgt                                    = 1;
 
@@ -251,6 +252,9 @@ while 1
       
       case('constrain sign of triangular slip (tvr only)')  
         Command.trislipsign                           = str2num(value);
+
+      case('lambda value for tvr estimator - blocks only')
+        Command.tvrBlockParam                         = str2double(value);
 
 
    end   

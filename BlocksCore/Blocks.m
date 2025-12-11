@@ -174,12 +174,38 @@ switch Command.solutionMethod
     %     fprintf(1, 'Done.\n');
     
     case 'tvr'
-%       fprintf(1, '%s\n', Command.solutionMethod);
-       fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...', Command.tvrlambda);
-       [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
-       Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command, Index);
-       Model.covariance = inv(R'*W*R);
-       fprintf(1, 'done.\n');
+        %       fprintf(1, '%s\n', Command.solutionMethod);
+        fprintf(1, 'Doing the inversion with Total Variation Regularization on triangular slip, using lambda = %g...', Command.tvrlambda);
+        [Rt, dt, Wt, Difft, Rg, dg, Wg] = AdjustMatricesTvr(R, d, W, Patches, Index);
+        Model.omegaEst = blockstvrtrislip(Rt, dt, Wt, Difft, Command, Index);
+        Model.covariance = inv(R'*W*R);
+        fprintf(1, 'done.\n');
+
+    case 'tvr-blocks'
+%         fprintf(1, '%s\n', Command.solutionMethod);
+        fprintf(1, 'Doing the inversion with Total Variation Regularization...\n');
+        fprintf(1, 'TVR weighting parameter = %5.3f\n', Command.tvrBlockParam);
+        if isempty(which('cvx_begin'))
+            error('CVX is not installed or not on the MATLAB path.\n');
+        end
+        fprintf(1, 'Doing an initial inversion via backslash (Model.omegaClassic) - don''t worry about singularity errors here...\n');
+        Model.covariance = (R'*W*R)\eye(size(R, 2));
+        Model.omegaClassic = Model.covariance*R'*W*d;
+
+        DD = MakeDiffMatrixGen(Block,Segment);
+        bufferwidth = numel(R(1,:)) - numel(DD(1,:));
+        bufferlen = numel(DD(:,1));
+        Dnew = [DD zeros(bufferlen,bufferwidth)];
+        W_12 = sqrtm(W);
+        A = sparse(W_12*R);
+        b = sparse(W_12*d);
+        n = numel(Model.omegaClassic);
+        cvx_begin quiet
+        variable x(n)
+        minimize( norm(A*x-b,2) + (lambda)*norm(Dnew*x,1) )
+        cvx_end
+        Model.omegaEst = x;
+        fprintf(1, 'Done.\n');
 
     otherwise
        fprintf(1, 'No solution method of type: %s\n', Command.solutionMethod);

@@ -30,12 +30,12 @@ end
 % Loop over blocks and write to file
 for cnt = 1 : numel(rrate)
    fprintf(filestream, '%s\n', blockname(cnt, :));
-   fprintf(filestream, '%3.3f   %3.3f\n', Ilon(cnt), Ilat(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', Elon(cnt), Elonsig(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', Elat(cnt), Elatsig(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', rrate(cnt), rrate_sig(cnt));
-   fprintf(filestream, '%3.3f   %d\n', rrate_info(cnt), ap_tog(cnt));
-   fprintf(filestream, '%3.3e   %3.3e   %3.3e\n', block_other1(cnt), block_other2(cnt), block_other3(cnt));
-   fprintf(filestream, '%3.3e   %3.3e   %3.3e\n', block_other4(cnt), block_other5(cnt), block_other6(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Ilon(cnt), Ilat(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Elon(cnt), Elonsig(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Elat(cnt), Elatsig(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', rrate(cnt), rrate_sig(cnt));
+   fprintf(filestream, '%3.5f   %d\n', rrate_info(cnt), ap_tog(cnt));
+   fprintf(filestream, '%3.5e   %3.5e   %3.5e\n', block_other1(cnt), block_other2(cnt), block_other3(cnt));
+   fprintf(filestream, '%3.5e   %3.5e   %3.5e\n', block_other4(cnt), block_other5(cnt), block_other6(cnt));
 end
 fclose(filestream);

@@ -1,6 +1,5 @@
 function WriteBlocksStruct(filename, Block)
 % WriteBlocksStruct.m
-
 % Open file stream
 filestream                          = fopen(filename, 'w');
 
@@ -17,12 +16,12 @@ fprintf(filestream, 'other    other    other\n');
 % Loop over blocks and write to file
 for cnt = 1 : numel(Block.rotationRate)
    fprintf(filestream, '%s\n', Block.name(cnt, :));
-   fprintf(filestream, '%3.3f   %3.3f\n', Block.interiorLon(cnt), Block.interiorLat(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', Block.eulerLon(cnt), Block.eulerLonSig(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', Block.eulerLat(cnt), Block.eulerLatSig(cnt));
-   fprintf(filestream, '%3.3f   %3.3f\n', Block.rotationRate(cnt), Block.rotationRateSig(cnt));
-   fprintf(filestream, '%3.3f   %d\n', Block.rotationInfo(cnt), Block.aprioriTog(cnt));
-   fprintf(filestream, '%3.3f   %3.3f   %3.3f\n', Block.other1(cnt), Block.other2(cnt), Block.other3(cnt));
-   fprintf(filestream, '%3.3f   %3.3f   %3.3f\n', Block.other4(cnt), Block.other5(cnt), Block.other6(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Block.interiorLon(cnt), Block.interiorLat(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Block.eulerLon(cnt), Block.eulerLonSig(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Block.eulerLat(cnt), Block.eulerLatSig(cnt));
+   fprintf(filestream, '%3.5f   %3.5f\n', Block.rotationRate(cnt), Block.rotationRateSig(cnt));
+   fprintf(filestream, '%3.5f   %d\n', Block.rotationInfo(cnt), Block.aprioriTog(cnt));
+   fprintf(filestream, '%3.5f   %3.5f   %3.5f\n', Block.other1(cnt), Block.other2(cnt), Block.other3(cnt));
+   fprintf(filestream, '%3.5f   %3.5f   %3.5f\n', Block.other4(cnt), Block.other5(cnt), Block.other6(cnt));
 end
 fclose(filestream);
