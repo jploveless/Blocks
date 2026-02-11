@@ -55,7 +55,7 @@ for i = 1:numel(S1.lon)
       end
    end
 end
-nComSta = numel(lon1);
+nComSta = numel(lon1)
 
 % Solve for reference frame alignment
 nStations                  = numel(lon1);

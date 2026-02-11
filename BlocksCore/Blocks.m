@@ -263,7 +263,6 @@ Model.upResidVel                                 = Station.upVel - Model.upVel;
 Model.SarResid                                   = Sar.data - Model.Sar;
            
 fprintf('done.\n')
-keyboard
 fprintf('Writing output...')
 
 % Write output

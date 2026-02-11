@@ -88,3 +88,15 @@ if (showText)
    fprintf(filestream, 'Total number of segments : %d\n', nSegments);
    fprintf(filestream, '<-- Done reading %s\n\n', fileName);
 end
+
+% Break if any latitude is exactly zero 
+% This causes problems with the oblique Mercator projection
+% Noted by Jeff Freymueller
+zero_lat = sum([Segment.lat1 == 0, Segment.lat2 == 0], 2);
+if sum(zero_lat) > 0
+    zero_lat_seg_idx = find(zero_lat);
+	fprintf(filestream, '\nThe following segments have one endpoint at latitude = 0. Adjust to != 0:\n');
+    fprintf(filestream, 'Segment %g\n', zero_lat_seg_idx); 
+end
+error('Zero latitudes not allowed.')
+	
